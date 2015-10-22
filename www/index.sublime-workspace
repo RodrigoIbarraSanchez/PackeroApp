@@ -1,0 +1,689 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"margi",
+				"margin"
+			],
+			[
+				"margin",
+				"margin-right"
+			],
+			[
+				"h",
+				"height"
+			],
+			[
+				"bord",
+				"border-radius"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"Sh",
+				"shipmentUsuario"
+			],
+			[
+				"li",
+				"listaEnvios"
+			],
+			[
+				"ng",
+				"ng-model"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"bor",
+				"border-radius"
+			],
+			[
+				"fo",
+				"font-size"
+			],
+			[
+				"fot",
+				"font-family"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"im",
+				"important"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"op",
+				"opacity"
+			],
+			[
+				"fon",
+				"font-family"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"pa",
+				"padding-right"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"fl",
+				"float"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"le",
+				"left"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"i",
+				"list-item"
+			],
+			[
+				"font-",
+				"font-weight"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"Ima",
+				"AlphaImageLoader"
+			],
+			[
+				"w",
+				"width"
+			],
+			[
+				"re",
+				"no-repeat"
+			],
+			[
+				"no",
+				"no-repeat"
+			],
+			[
+				"font",
+				"font-size"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 512.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"http://wbond.net/sublime_packages/package_control/installation"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/xampp/htdocs/bookmarks/css/style.css",
+		"/C/xampp/htdocs/bookmarks/index.html",
+		"/C/xampp/htdocs/PPWebApp/web/libs/angular/angular-ui-router/release/angular-ui-router.js",
+		"/C/xampp/htdocs/PPWebApp/web/libs/angular/angular-ui-router/release/angular-ui-router.min.js",
+		"/C/xampp/htdocs/PPWebApp/web/angular/tpl/app.html",
+		"/C/xampp/htdocs/PPWebApp/web/src/tpl/app_home.html",
+		"/C/xampp/htdocs/PPWebApp/web/src/css/app.css",
+		"/C/xampp/htdocs/PPWebApp/web/src/css/less/app.packandpack.less",
+		"/C/xampp/htdocs/PPWebApp/web/src/js/controllers/home.js",
+		"/C/Users/Rodrigo Ibarra/Documents/tablas/index.html",
+		"/C/xampp/htdocs/PPWebApp/web/src/js/controllers/signup.js",
+		"/C/xampp/htdocs/PPWebApp/web/src/index.html",
+		"/C/xampp/htdocs/PPWebApp/web/src/css/less/app.less",
+		"/C/xampp/htdocs/PPWebApp/web/src/tpl/page_signup.html",
+		"/C/xampp/htdocs/PPWebApp/web/src/tpl/page_signin.html",
+		"/C/xampp/htdocs/ionicProyects/packAppPruebas/www/index.html",
+		"/C/xampp/htdocs/ionicProyects/packAppPruebas/www/js/app.js",
+		"/C/xampp/htdocs/ionicProyects/packAppPruebas/www/lib/ionic/css/ionic.css",
+		"/C/xampp/htdocs/packandpack/src/PP/PrincipalBundle/Resources/views/Default/partes/sectionAbout.html.twig",
+		"/C/xampp/htdocs/packandpack/web/css/ppprincipal/css/style-4.css",
+		"/C/xampp/htdocs/packandpack/web/css/stylenuevo.css",
+		"/C/xampp/htdocs/packandpack/app/Resources/views/basicos/footer.html.twig",
+		"/C/xampp/htdocs/packandpack/.gitignore",
+		"/C/xampp/htdocs/ionicProyects/packApp/www/index.html",
+		"/C/xampp/htdocs/ionicProyects/packApp/www/js/app.js",
+		"/C/xampp/htdocs/ionicProyects/devdactic-refresher/www/js/app.js",
+		"/C/xampp/htdocs/ionicProyects/ionicTest/www/index.html",
+		"/C/xampp/htdocs/ionicProyects/ionicTest/www/js/app.js",
+		"/C/xampp/htdocs/ionicProyects/ionicTest/www/css/style.css",
+		"/C/xampp/htdocs/ionicProyects/pruebasAngular/www/js/app.js",
+		"/C/xampp/htdocs/ionicProyects/pruebasAngular/www/index.html",
+		"/C/xampp/htdocs/ionicProyects/pruebasAngular/ionic.project",
+		"/C/xampp/htdocs/ionicProyects/pruebasAngular/www/lib/ionic/js/ionic.bundle.js",
+		"/C/xampp/htdocs/ionicProyects/packApp/www/templates/login.js",
+		"/C/xampp/htdocs/ionicProyects/boton/www/js/app.js",
+		"/C/xampp/htdocs/ionicProyects/boton/www/index.html",
+		"/C/xampp/htdocs/pruebasAngularjs/boton/index.html",
+		"/C/xampp/htdocs/pruebasAngularjs/boton/angular.js",
+		"/C/xampp/htdocs/construccion/index.html",
+		"/C/xampp/htdocs/packandpack/web/css/landingstyle8.css",
+		"/C/xampp/htdocs/packandpack/src/PP/PrincipalBundle/Resources/views/Default/construccion.html.twig",
+		"/C/xampp/htdocs/packandpack/src/PP/PrincipalBundle/Resources/views/Default/suscrito.html.twig",
+		"/C/Users/Rodrigo Ibarra/Desktop/construccion.html.twig",
+		"/C/xampp/htdocs/packandpack/web/bundles/ppprincipal/css/font-awesome.css",
+		"/C/xampp/htdocs/packandpack/composer.json  ",
+		"/C/xampp/htdocs/packandpack/app/config/parameters.yml",
+		"/C/xampp/htdocs/packandpack/app/config/parameters.yml.dist",
+		"/C/xampp/htdocs/PackandPackApp/config.xml",
+		"/C/xampp/htdocs/BuscaIberoBusCopia/css/index.css",
+		"/C/xampp/htdocs/BuscaIberoBus/css/index.css",
+		"/C/xampp/htdocs/BuscaIberoBus/botones.html",
+		"/C/xampp/htdocs/BuscaIberoBus/css/style.mobile.css",
+		"/C/xampp/htdocs/BuscaIberoBus/css/menu.css",
+		"/C/xampp/htdocs/BuscaIberoBus/css/menu.html",
+		"/C/xampp/htdocs/PackandPackApp/www/css/index.css",
+		"/C/xampp/htdocs/PackandPackApp/www/index.html",
+		"/C/xampp/htdocs/packandpack/index.html",
+		"/C/xampp/htdocs/packandpack/app/Resources/views/partes/pageHeader.html.twig",
+		"/C/xampp/htdocs/packandpack/src/PP/AdventureBundle/Form/PlaceType.php",
+		"/C/xampp/htdocs/packandpack/app/Resources/views/partes/header.html.twig",
+		"/C/xampp/htdocs/packandpack/src/PP/PrincipalBundle/Resources/views/Default/partes/banners.html.twig",
+		"/C/xampp/htdocs/packandpack/src/PP/PrincipalBundle/Resources/views/Default/partes/sectionVentajas.html.twig",
+		"/C/xampp/htdocs/packandpack/app/Resources/views/basicos/head.html.twig",
+		"/C/xampp/htdocs/packandpack/src/PP/UserBundle/Resources/views/User/loginHeader.html.twig",
+		"/C/xampp/htdocs/packandpack/app/Resources/views/partes/section.html.twig",
+		"/C/xampp/htdocs/packandpack/src/PP/UserBundle/Resources/views/Registro/registro.html.twig",
+		"/C/xampp/htdocs/packandpack/src/PP/UserBundle/Resources/views/Registro/registroHeader.html.twig",
+		"/C/xampp/htdocs/packandpack/web/bundles/ppprincipalbundle2/css/style.css",
+		"/C/xampp/htdocs/packandpack/web/bundles/ppprincipalbundle2/css/adefault.css",
+		"/C/xampp/htdocs/packandpack/app/config/config.yml",
+		"/C/xampp/htdocs/packandpack/src/PP/AdventureBundle/Controller/ShipmentController.php",
+		"/C/xampp/htdocs/packandpack/web/css/styles-2.css",
+		"/C/xampp/htdocs/packandpack/web/bundles/ppprincipalbundle/css/adefault.css",
+		"/C/xampp/htdocs/packandpack/web/bundles/ppprincipalbundle/css/style.css",
+		"/C/xampp/htdocs/packandpack/web/css/flickerplate4.css",
+		"/C/xampp/htdocs/packandpack/web/css/landingstyleThankYouPage.css",
+		"/C/xampp/htdocs/packandpack/src/PP/PrincipalBundle/Resources/views/Default/pruebas.html.twig",
+		"/C/xampp/htdocs/packandpack/src/PP/PrincipalBundle/Resources/config/routing.yml",
+		"/C/Users/Rodrigo Ibarra/Downloads/Flickerplate-2.1.1/Flickerplate-2.1.1/css/flickerplate.css",
+		"/C/Users/Rodrigo Ibarra/Downloads/Flickerplate-2.1.1/Flickerplate-2.1.1/index.html",
+		"/C/xampp/htdocs/packandpack/web/css/landingstyleuno.css",
+		"/C/xampp/htdocs/packandpack/web/css/flickerplate.css",
+		"/C/xampp/htdocs/packandpack/src/PP/PrincipalBundle/Resources/views/Default/construccionbackupDos.html",
+		"/C/Users/Rodrigo Ibarra/AppData/Local/Temp/Temp1_Flickerplate-2.1.1.zip/Flickerplate-2.1.1/css/flickerplate.css",
+		"/C/xampp/htdocs/packandpack/web/css/demo.css",
+		"/C/Users/Rodrigo Ibarra/Documents/slide.html",
+		"/C/Users/Rodrigo Ibarra/Downloads/Flickerplate-2.1.1/Flickerplate-2.1.1/flickerp.html",
+		"/C/Users/Rodrigo Ibarra/Downloads/ZoomSlider.zip",
+		"//WIN-P27E8CKV0A8/Users/Public/Documents/landingstyledos.css",
+		"//WIN-P27E8CKV0A8/Users/Public/Documents/construccionDos.html.twig",
+		"//WIN-P27E8CKV0A8/Users/Public/Documents/construccion.html.twig",
+		"/C/xampp/htdocs/packandpack/web/css/construccion/landingstyleuno.css",
+		"/C/xampp/htdocs/packandpack/.git/info/exclude",
+		"/C/xampp/htdocs/packandpack/web/config.php",
+		"/C/xampp/htdocs/packandpack/composer.json"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 102.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"id=\"check\"",
+			"of",
+			"onclick=\"this.className='on';return false;\"",
+			".on",
+			"accesoRapidoRow",
+			"SignupFormController",
+			" ng-click",
+			"login",
+			"intro",
+			"login",
+			"cta-butt",
+			"button",
+			"page6",
+			"page2",
+			"page6",
+			"page2",
+			"app.js",
+			"greeting2",
+			"controladorPrincipal",
+			"img",
+			"tel",
+			"footer",
+			".fa-dollar",
+			"usuarios",
+			"hover",
+			".banner-search .tab-title.active",
+			".banner-search .tab-title",
+			"header-nav",
+			".content-section",
+			"footer",
+			"Ahora si vamos",
+			"ahora si vamos",
+			"30px",
+			"25px",
+			"25",
+			"#241c1f",
+			"\">\n",
+			"a",
+			"/bundles/ppprincipal",
+			"ppprincipalbundle2",
+			"opacity",
+			".enable-fixed-header #header",
+			"lbundle",
+			".banner-search .tab-title",
+			"'css",
+			"styles-2",
+			"height:",
+			".flickerplate ul.flicks>li .flick-inner",
+			"fli",
+			"landi",
+			"acercade",
+			"prefooter",
+			".flickerplate ul.flicks>li .flick-inner .flick-content",
+			"nav",
+			"flickerplate",
+			"#uno",
+			"col-sm-4 col-centered",
+			"col-sm-4",
+			"hidden-xs col-sm-4",
+			"hidden-xs",
+			"12",
+			"col-xs-12",
+			"col-sm-4",
+			"col-centered",
+			"form",
+			".form",
+			"font-awesome",
+			".flickerplate ul.flicks>li .flick-title",
+			".flickerplate",
+			".flickerplate ul.flicks>li .flick-title",
+			"f105",
+			"construccion/",
+			".flickerplate",
+			"icon-font-flickerplate/icomoon.eot?c4hmew",
+			"icon-font-flickerplate/icomoon.woff?c4hmew ",
+			"css/",
+			";\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"css/construccion/"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "index.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"rout",
+				"web\\libs\\angular\\angular-ui-router\\release\\angular-ui-router.js"
+			],
+			[
+				"app",
+				"web\\angular\\tpl\\app.html"
+			],
+			[
+				"app.cs",
+				"css\\app.css"
+			],
+			[
+				"home.",
+				"js\\controllers\\home.js"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
+				"home",
+				"tpl\\app_home.html"
+			],
+			[
+				"css",
+				"www\\lib\\ionic\\css\\ionic.css"
+			],
+			[
+				"about",
+				"src\\PP\\PrincipalBundle\\Resources\\views\\Default\\partes\\sectionAbout.html.twig"
+			],
+			[
+				"style-4",
+				"web\\css\\ppprincipal\\css\\style-4.css"
+			],
+			[
+				"nuev",
+				"web\\css\\stylenuevo.css"
+			],
+			[
+				"foo",
+				"app\\Resources\\views\\basicos\\footer.html.twig"
+			],
+			[
+				"sty",
+				"ionicTest\\www\\css\\style.css"
+			],
+			[
+				"bun",
+				"www\\lib\\ionic\\js\\ionic.bundle.js"
+			],
+			[
+				"land",
+				"web\\css\\landingstyle8.css"
+			],
+			[
+				"suscr",
+				"src\\PP\\PrincipalBundle\\Resources\\views\\Default\\suscrito.html.twig"
+			],
+			[
+				"fontawesom",
+				"web\\bundles\\ppprincipal\\css\\font-awesome.css"
+			],
+			[
+				"lan",
+				"web\\css\\landingstyle8.css"
+			],
+			[
+				"parameter",
+				"app\\config\\parameters.yml.dist"
+			],
+			[
+				"par",
+				"app\\config\\parameters.yml"
+			],
+			[
+				"cons",
+				"src\\PP\\PrincipalBundle\\Resources\\views\\Default\\construccion.html.twig"
+			],
+			[
+				"index.c",
+				"www\\css\\index.css"
+			],
+			[
+				"index",
+				"www\\index.html"
+			],
+			[
+				"registro",
+				"src\\PP\\UserBundle\\Resources\\views\\Registro\\registroHeader.html.twig"
+			],
+			[
+				"head",
+				"app\\Resources\\views\\basicos\\head.html.twig"
+			],
+			[
+				"bann",
+				"src\\PP\\PrincipalBundle\\Resources\\views\\Default\\partes\\banners.html.twig"
+			],
+			[
+				"section.v",
+				"src\\PP\\PrincipalBundle\\Resources\\views\\Default\\partes\\sectionVentajas.html.twig"
+			],
+			[
+				"header",
+				"app\\Resources\\views\\partes\\header.html.twig"
+			],
+			[
+				"parame",
+				"app\\config\\parameters.yml"
+			],
+			[
+				"page",
+				"app\\Resources\\views\\partes\\pageHeader.html.twig"
+			],
+			[
+				"placety",
+				"src\\PP\\AdventureBundle\\Form\\PlaceType.php"
+			],
+			[
+				"section",
+				"src\\PP\\PrincipalBundle\\Resources\\views\\Default\\partes\\sectionVentajas.html.twig"
+			],
+			[
+				"pagehea",
+				"app\\Resources\\views\\partes\\pageHeader.html.twig"
+			],
+			[
+				"sectio",
+				"app\\Resources\\views\\partes\\section.html.twig"
+			],
+			[
+				"registro.ht",
+				"src\\PP\\UserBundle\\Resources\\views\\Registro\\registro.html.twig"
+			],
+			[
+				"loginhead",
+				"src\\PP\\UserBundle\\Resources\\views\\User\\loginHeader.html.twig"
+			],
+			[
+				"registrohead",
+				"src\\PP\\UserBundle\\Resources\\views\\Registro\\registroHeader.html.twig"
+			],
+			[
+				"loginhea",
+				"src\\PP\\UserBundle\\Resources\\views\\User\\loginHeader.html.twig"
+			],
+			[
+				"para",
+				"app\\config\\parameters.yml"
+			],
+			[
+				"config",
+				"app\\config\\config.yml"
+			],
+			[
+				"head.h",
+				"app\\Resources\\views\\basicos\\head.html.twig"
+			],
+			[
+				"style",
+				"web\\css\\styles-2.css"
+			],
+			[
+				"config.",
+				"app\\config\\config.yml"
+			],
+			[
+				"head.html",
+				"app\\Resources\\views\\basicos\\head.html.twig"
+			],
+			[
+				"sus",
+				"src\\PP\\PrincipalBundle\\Resources\\views\\Default\\suscrito.html.twig"
+			],
+			[
+				"routing",
+				"src\\PP\\PrincipalBundle\\Resources\\config\\routing.yml"
+			],
+			[
+				"landingstyle",
+				"web\\css\\landingstyle2.css"
+			],
+			[
+				"styleuno",
+				"web\\css\\landingstyleuno.css"
+			],
+			[
+				"construc",
+				"src\\PP\\PrincipalBundle\\Resources\\views\\Default\\construccion.html.twig"
+			],
+			[
+				"landing",
+				"web\\css\\construccion\\landingstyleuno.css"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 436.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
