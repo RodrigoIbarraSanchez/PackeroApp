@@ -164,7 +164,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
             },
             function (x) {
                 // Error de servidor
-                alert("Error de servidor " + x);
+                alert("Error de servidor " + JSON.stringify(x));
             });
     }
 
