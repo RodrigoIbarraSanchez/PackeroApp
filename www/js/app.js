@@ -61,6 +61,8 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
 
     $scope.sinSolicitudes = 'No hay solicitudes todavía';
     $scope.solicitudesPendientes = {};
+    $scope.solicitudesEspera = {};
+    $scope.solicitudesConfirmadas = {};
 
     $scope.weekDayLabels = [
         'Lu',
@@ -84,7 +86,31 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
         if (solicitudes.length > 0) {
             $scope.sinSolicitudes = '';
         }
-        $scope.solicitudesPendientes = solicitudes;
+
+        var solicitudesPendientes = [];
+        var solicitudesEspera = [];
+        var solicitudesConfirmadas = [];
+        for (var i = 0; i < solicitudes.length; i++) {
+            //Detectar si es solicitud PENDIENTE con su status 10
+            if (solicitudes[i].statusId == 10) {
+                //Agregar solicitudes pendientes
+                solicitudesPendientes.push(solicitudes[i]);
+            }
+            //Detectar si es solicitud en ESPERA con su status 20
+            if (solicitudes[i].statusId == 20) {
+                //Agregar solicitudes en espera
+                solicitudesEspera.push(solicitudes[i]);
+            }
+            //Detectar si es solicitud CONFIRMADA con su status 30
+            if (solicitudes[i].statusId == 30) {
+                //Agregar solicitudes confirmadas
+                solicitudesConfirmadas.push(solicitudes[i]);
+            }
+        }
+
+        $scope.solicitudesPendientes = solicitudesPendientes;
+        $scope.solicitudesEspera = solicitudesEspera;
+        $scope.solicitudesConfirmadas = solicitudesConfirmadas;
     });
 
     consumirAPI.obtenerOpcionesViaje(token, function (opcionesViaje) {
