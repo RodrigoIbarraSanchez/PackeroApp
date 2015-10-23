@@ -107,14 +107,22 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
 
         //crear o actualizar Puebla - México
         if (!existePueblaMexico) {
-            consumirAPI.opcionViaje(260, 261, $scope.puebla.weekDays, token);
+            consumirAPI.opcionViaje(260, 261, $scope.puebla.weekDays, token, function (id) {
+                existePueblaMexico = true;
+                opcionPueblaId = parseInt(id);
+                alert("Guardado correctamente");
+            });
         } else {
             consumirAPI.actualizarOpcionViaje(opcionPueblaId, 260, 261, $scope.puebla.weekDays, token);
         }
 
         //crear o actualizar México - Puebla
         if (!existeMexicoPuebla) {
-            consumirAPI.opcionViaje(261, 260, $scope.mexico.weekDays, token);
+            consumirAPI.opcionViaje(261, 260, $scope.mexico.weekDays, token, function (id) {
+                existeMexicoPuebla = true;
+                opcionMexicoId = parseInt(id);
+                alert("Guardado correctamente");
+            });
         } else {
             consumirAPI.actualizarOpcionViaje(opcionMexicoId, 261, 260, $scope.mexico.weekDays, token);
         }
@@ -126,7 +134,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
 .service('consumirAPI', function ($http) {
 
 
-    this.opcionViaje = function (origenId, destinoId, weekDays, token) {
+    this.opcionViaje = function (origenId, destinoId, weekDays, token, callback) {
 
         $http.post('http://packandpack.com/api/viajes/opciones?access_token=' + token, {
             origenId: origenId,
@@ -134,6 +142,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
             weekDays: weekDays
         }).then(function (response) {
             // Hacer algo con response
+            callback(response.data);
         }, function (x) {
             // Error en x
         });
@@ -153,10 +162,10 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
 
                 if (!response.data.access_token) {
                     // Error de acceso
-                    alert("El correo o la contraseña son incorrectos " + JSON.stringify(response));
+                    //alert("El correo o la contraseña son incorrectos " + JSON.stringify(response));
                 } else {
 
-                    alert("Acceso correcto");
+                    //alert("Acceso correcto");
                     var token = response.data.access_token;
                     callback(token);
                 }
@@ -164,7 +173,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
             },
             function (x) {
                 // Error de servidor
-                alert("Error de servidor " + JSON.stringify(x));
+                //alert("Error de servidor " + JSON.stringify(x));
             });
     }
 
@@ -186,7 +195,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
             weekDays: weekDays
         }).then(function (response) {
             // Hacer algo con response
-            alert("se hizo put satisfactorio");
+            alert("Guardado correctamente");
         }, function (x) {
             // Error en x
         });
