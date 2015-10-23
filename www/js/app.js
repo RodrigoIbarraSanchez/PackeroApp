@@ -59,6 +59,9 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
     var opcionPueblaId = 0;
     var opcionMexicoId = 0;
 
+    $scope.sinSolicitudes = 'No hay solicitudes todavía';
+    $scope.solicitudesPendientes = {};
+
     $scope.weekDayLabels = [
         'Lu',
         'Ma',
@@ -76,6 +79,13 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
     $scope.mexico = {
         weekDays: []
     };
+
+    consumirAPI.obtenerSolicitudes(token, function (solicitudes) {
+        if (solicitudes.length > 0) {
+            $scope.sinSolicitudes = '';
+        }
+        $scope.solicitudesPendientes = solicitudes;
+    });
 
     consumirAPI.obtenerOpcionesViaje(token, function (opcionesViaje) {
         //Recorrer todas las opciones
@@ -132,6 +142,16 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
 
 //creamos nuestro servicio
 .service('consumirAPI', function ($http) {
+
+    this.obtenerSolicitudes = function (token, callback) {
+        $http.get('http://packandpack.com/api/packero/solicitudes?access_token=' + token)
+            .then(function (response) {
+                //Hacer algo con response
+                callback(response.data);
+            }, function (x) {
+                //Error en x 
+            });
+    }
 
 
     this.opcionViaje = function (origenId, destinoId, weekDays, token, callback) {
