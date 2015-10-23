@@ -151,18 +151,21 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
             password: pass
         }).then(function (response) {
 
-            if (!response.data.access_token) {
-                // Error de acceso
-                alert("El correo o la contraseña son incorrectos");
-            } else {
-                var token = response.data.access_token;
-                callback(token);
-            }
+                if (!response.data.access_token) {
+                    // Error de acceso
+                    alert("El correo o la contraseña son incorrectos " + JSON.stringify(response));
+                } else {
 
-        }, function (x) {
-            // Error de servidor
-            alert("El correo o la contraseña son incorrectos");
-        });
+                    alert("Acceso correcto");
+                    var token = response.data.access_token;
+                    callback(token);
+                }
+
+            },
+            function (x) {
+                // Error de servidor
+                alert("Error de servidor " + x);
+            });
     }
 
     this.obtenerOpcionesViaje = function (token, callback) {
