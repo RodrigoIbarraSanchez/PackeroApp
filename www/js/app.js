@@ -82,36 +82,52 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
         weekDays: []
     };
 
-    consumirAPI.obtenerSolicitudes(token, function (solicitudes) {
-        if (solicitudes.length > 0) {
-            $scope.sinSolicitudes = '';
-        }
+    $scope.ofertarSolicitud = function (id) {
+        consumirAPI.ofertarSolicitud(id, token, function () {
+            recargarSolicitudes();
+        });
+    }
 
-        var solicitudesPendientes = [];
-        var solicitudesEspera = [];
-        var solicitudesConfirmadas = [];
-        for (var i = 0; i < solicitudes.length; i++) {
-            //Detectar si es solicitud PENDIENTE con su status 10
-            if (solicitudes[i].statusId == 10) {
-                //Agregar solicitudes pendientes
-                solicitudesPendientes.push(solicitudes[i]);
-            }
-            //Detectar si es solicitud en ESPERA con su status 20
-            if (solicitudes[i].statusId == 20) {
-                //Agregar solicitudes en espera
-                solicitudesEspera.push(solicitudes[i]);
-            }
-            //Detectar si es solicitud CONFIRMADA con su status 30
-            if (solicitudes[i].statusId == 30) {
-                //Agregar solicitudes confirmadas
-                solicitudesConfirmadas.push(solicitudes[i]);
-            }
-        }
+    $scope.rechazarSolicitud = function (id) {
+        consumirAPI.rechazarSolicitud(id, token, function () {
+            recargarSolicitudes();
+        });
+    }
 
-        $scope.solicitudesPendientes = solicitudesPendientes;
-        $scope.solicitudesEspera = solicitudesEspera;
-        $scope.solicitudesConfirmadas = solicitudesConfirmadas;
-    });
+    recargarSolicitudes();
+
+    function recargarSolicitudes() {
+        consumirAPI.obtenerSolicitudes(token, function (solicitudes) {
+            if (solicitudes.length > 0) {
+                $scope.sinSolicitudes = '';
+            }
+
+            var solicitudesPendientes = [];
+            var solicitudesEspera = [];
+            var solicitudesConfirmadas = [];
+            for (var i = 0; i < solicitudes.length; i++) {
+                //Detectar si es solicitud PENDIENTE con su status 10
+                if (solicitudes[i].statusId == 10) {
+                    //Agregar solicitudes pendientes
+                    solicitudesPendientes.push(solicitudes[i]);
+                }
+                //Detectar si es solicitud en ESPERA con su status 20
+                if (solicitudes[i].statusId == 20) {
+                    //Agregar solicitudes en espera
+                    solicitudesEspera.push(solicitudes[i]);
+                }
+                //Detectar si es solicitud CONFIRMADA con su status 30
+                if (solicitudes[i].statusId == 30) {
+                    //Agregar solicitudes confirmadas
+                    solicitudesConfirmadas.push(solicitudes[i]);
+                }
+            }
+
+            $scope.solicitudesPendientes = solicitudesPendientes;
+            $scope.solicitudesEspera = solicitudesEspera;
+            $scope.solicitudesConfirmadas = solicitudesConfirmadas;
+        });
+    }
 
     consumirAPI.obtenerOpcionesViaje(token, function (opcionesViaje) {
         //Recorrer todas las opciones
@@ -176,6 +192,29 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
                 callback(response.data);
             }, function (x) {
                 //Error en x 
+            });
+    }
+
+    this.ofertarSolicitud = function (id, token, callback) {
+        $http.put('http://packandpack.com/api/packero/solicitudes?access_token=' + token, {
+            id: id,
+            status: 20
+        }).then(function (response) {
+                //Recargar solicitudes
+                callback();
+            },
+            function (x) {
+                //Error en x  
+            });
+    }
+
+    this.rechazarSolicitud = function (id, token, callback) {
+        $http.delete('http://packandpack.com/api/packero/solicitudes?id=' + id + '&access_token=' + token).then(function (response) {
+                //Recargar solicitudes
+                callback();
+            },
+            function (x) {
+                //Error en x  
             });
     }
 

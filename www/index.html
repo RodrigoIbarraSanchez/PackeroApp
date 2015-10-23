@@ -114,8 +114,8 @@
                         <p>Origen: <strong>{{solicitud.origen}}</strong></p>
                         <p>Destino: <strong>{{solicitud.destino}}</strong></p>
                         <p>Fecha: <strong>{{solicitud.fecha}}</strong></p>
-                        <button class="button button-full button-energized">Ofertar</button>
-                        <button class="button button-full button-energized">Rechazar</button>
+                        <button class="button button-full button-energized" ng-click="ofertarSolicitud(solicitud.id)">Ofertar</button>
+                        <button class="button button-full button-energized" ng-click="rechazarSolicitud(solicitud.id)">Rechazar</button>
                     </div>
                 </div>
                 <div class="card" ng-repeat="solicitud in solicitudesEspera">
@@ -155,9 +155,9 @@
                                 </label>
                             </div>
                         </div>
-                        <button class="button button-small button-energized pull-right" ng-click="guardarOpciones()">Guardar</button>
                     </div>
                 </div>
+                <button class="button button-block button-energized pull-right" ng-click="guardarOpciones()">Guardar</button>
             </ion-content>
         </ion-view>
     </script>
