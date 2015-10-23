@@ -162,7 +162,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
 
                 if (!response.data.access_token) {
                     // Error de acceso
-                    //alert("El correo o la contraseña son incorrectos " + JSON.stringify(response));
+                    alert("El correo o la contraseña son incorrectos");
                 } else {
 
                     //alert("Acceso correcto");
@@ -173,7 +173,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
             },
             function (x) {
                 // Error de servidor
-                //alert("Error de servidor " + JSON.stringify(x));
+                alert("El correo o la contraseña son incorrectos");
             });
     }
 
