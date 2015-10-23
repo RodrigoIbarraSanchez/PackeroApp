@@ -35,7 +35,7 @@ input[type="checkbox"] {
     -webkit-appearance: none;
     outline: 0;
     cursor: pointer;
-    margin: 5px!important;
+    margin: 2px!important;
     padding: 3px!important;
 }
 
