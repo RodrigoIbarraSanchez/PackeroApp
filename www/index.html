@@ -1,165 +1,166 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
-        <title>Pack&amp;Pack</title>
+    <title>Pack&amp;Pack</title>
 
-        <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+    <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
 
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-        <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
 
-        <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
 <link href="css/ionic.app.css" rel="stylesheet">
 -->
 
-        <!-- ionic/angularjs js -->
-        <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-        <script src="lib/checklist-model/checklist-model.js"></script>
+    <script src="lib/checklist-model/checklist-model.js"></script>
 
-        <!-- your app's js -->
-        <script src="js/app.js"></script>
-        <!-- Componentes-->
-    </head>
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <!-- Componentes-->
+</head>
 
-    <body ng-app="ionicApp">
+<body ng-app="ionicApp">
 
-        <ion-nav-bar class="bar-dark">
-            <ion-nav-back-button class="button-icon ion-arrow-left-c">
-            </ion-nav-back-button>
-        </ion-nav-bar>
+    <ion-nav-bar class="bar-dark">
+        <ion-nav-back-button class="button-icon ion-arrow-left-c">
+        </ion-nav-back-button>
+    </ion-nav-bar>
 
-        <ion-nav-view></ion-nav-view>
+    <ion-nav-view></ion-nav-view>
 
-        <script id="templates/sign-in.html" type="text/ng-template">
-            <ion-view view-title="Pack&Pack">
-                <ion-content ng-controller="SignInCtrl">
-                    <img src="img/log.jpg" style="display: block; margin-left: auto;margin-right: auto;border:none; width: 80px; height: auto;">
-                    <form ng-submit="signIn(email, pass)">
-                        <div class="list">
-                            <label class="item item-input item-floating-label">
-                                <span class="input-label">Email</span>
-                                <input ng-model="email" type="text" placeholder="Email">
-                            </label>
-                            <label class="item item-input item-floating-label">
-                                <span class="input-label">Contraseña</span>
-                                <input ng-model="pass" type="password" placeholder="Contraseña">
-                            </label>
-                        </div>
-                        <div class="spacer" style="height: 40px;"></div>
-                        <button type="submit" class="button button-energized button-full button-outline ">Acceder</button>
-                        <p class="text-center">
-                            <a href="#/forgot-password" style="text-decoration: none">Olvidé mi contraseña</a>
-                        </p>
-                    </form>
-                </ion-content>
-            </ion-view>
-        </script>
-
-        <script id="templates/forgot-password.html" type="text/ng-template">
-            <ion-view view-title="Forgot Password">
-                <ion-content padding="true">
-                    <p>Formulario de recuperación de contraseña</p>
-                </ion-content>
-            </ion-view>
-        </script>
-
-        <script id="templates/tabs.html" type="text/ng-template">
-            <ion-view>
-                <ion-tabs class="tabs-icon-top tabs-dark">
-
-                    <ion-tab title="Envios" icon="ion-home" href="#/tab/envios">
-                        <ion-nav-view name="envios-tab"></ion-nav-view>
-                    </ion-tab>
-
-                    <ion-tab title="Viajes" icon="ion-ios-information" href="#/tab/viajes">
-                        <ion-nav-view name="viajes-tab"></ion-nav-view>
-                    </ion-tab>
-
-                    <ion-tab title="Cerrar Sesión" icon="ion-log-out" href="#/sign-in">
-                    </ion-tab>
-
-                </ion-tabs>
-            </ion-view>
-        </script>
-
-        <script id="templates/envios.html" type="text/ng-template">
-            <ion-view view-title="Envios">
-                <ion-content padding="true" compile="listaEnvios">
-                    <div class="card" id="confirmado">
-                        <div class="item item-text-wrap" style="background-color:rgba(123, 222, 151, 0.4);">
-                            <p style="text-align:center;"><strong>Confirmado</strong></p>
-                            <p>Nombre: <strong>{{shipmentNombre}}</strong></p>
-                            <p>Destino: <strong>{{shipmentDestino}}</strong></p>
-                            <p>Origen: <strong>{{shipmentOrigen}}</strong></p>
-                            <p>Fecha: <strong>{{shipmentFecha}}</strong></p>
-                            <a href="#/lista" class="button button-full button-energized">Voy por el Paquete</a>
-                            <a href="#/lista" class="button button-full button-energized" ng-disabled="true">Recogido</a>
-                            <a href="#/lista" class="button button-full button-energized" ng-disabled="true">Entregado</a>
-                        </div>
+    <script id="templates/sign-in.html" type="text/ng-template">
+        <ion-view view-title="Pack&Pack">
+            <ion-content ng-controller="SignInCtrl">
+                <img src="img/log.jpg" style="display: block; margin-left: auto;margin-right: auto;border:none; width: 80px; height: auto;">
+                <form ng-submit="signIn(email, pass)">
+                    <div class="list">
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">Email</span>
+                            <input ng-model="email" type="text" placeholder="Email">
+                        </label>
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">Contraseña</span>
+                            <input ng-model="pass" type="password" placeholder="Contraseña">
+                        </label>
                     </div>
-                    <div class="card" id="pendiente">
-                        <div class="item item-text-wrap" style="background-color:rgba(182, 193, 185, 0.4);">
-                            <p style="text-align:center;"><strong>Pendiente</strong></p>
-                            <p>Nombre: <strong>{{shipmentNombre}}</strong></p>
-                            <p>Destino: <strong>{{shipmentDestino}}</strong></p>
-                            <p>Origen: <strong>{{shipmentOrigen}}</strong></p>
-                            <p>Fecha: <strong>{{shipmentFecha}}</strong></p>
-                            <a href="#/lista" class="button button-full button-energized">Ofertar</a>
-                            <a href="#/lista" class="button button-full button-energized">Rechazar</a>
-                        </div>
-                    </div>
-                    <div class="card" id="espera">
-                        <div class="item item-text-wrap" style="background-color:rgb(255, 201, 0);">
-                            <p style="text-align:center;"><strong>En espera</strong></p>
-                            <p>Nombre: <strong>{{shipmentNombre}}</strong></p>
-                            <p>Destino: <strong>{{shipmentDestino}}</strong></p>
-                            <p>Origen: <strong>{{shipmentOrigen}}</strong></p>
-                            <p>Fecha: <strong>{{shipmentFecha}}</strong></p>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                </ion-content>
-            </ion-view>
-        </script>
+                    <div class="spacer" style="height: 40px;"></div>
+                    <button type="submit" class="button button-energized button-full button-outline ">Acceder</button>
+                    <p class="text-center">
+                        <a href="#/forgot-password" style="text-decoration: none">Olvidé mi contraseña</a>
+                    </p>
+                </form>
+            </ion-content>
+        </ion-view>
+    </script>
 
-        <script id="templates/viajes.html" type="text/ng-template">
-            <ion-view view-title="Viajes">
-                <ion-content padding="true" ng-controller="HomeTabCtrl">
-                    <h1>Disponibilidad para viajar</h1>
-                    <div class="card" id="pendiente">
-                        <div class="item item-text-wrap" style="background-color:rgba(182, 193, 185, 0.4);">
-                            <p style="text-align:center;"><strong>Opciones de viaje</strong></p>
-                            <div class="form-group">
-                                <div class="form-group Tenvios">
-                                    <p>Puebla-México</p>
+    <script id="templates/forgot-password.html" type="text/ng-template">
+        <ion-view view-title="Forgot Password">
+            <ion-content padding="true">
+                <p>Formulario de recuperación de contraseña</p>
+            </ion-content>
+        </ion-view>
+    </script>
 
-                                    <label ng-repeat="label in weekDayLabels">
-                                        <input type="checkbox" checklist-model="puebla.weekDays" checklist-value="$index">{{label}}
-                                    </label>
-                                </div>
+    <script id="templates/tabs.html" type="text/ng-template">
+        <ion-view>
+            <ion-tabs class="tabs-icon-top tabs-dark">
+
+                <ion-tab title="Envios" icon="ion-home" href="#/tab/envios">
+                    <ion-nav-view name="envios-tab"></ion-nav-view>
+                </ion-tab>
+
+                <ion-tab title="Viajes" icon="ion-ios-information" href="#/tab/viajes">
+                    <ion-nav-view name="viajes-tab"></ion-nav-view>
+                </ion-tab>
+
+                <ion-tab title="Cerrar Sesión" icon="ion-log-out" href="#/sign-in">
+                </ion-tab>
+
+            </ion-tabs>
+        </ion-view>
+    </script>
+
+    <script id="templates/envios.html" type="text/ng-template">
+        <ion-view view-title="Envios">
+            <ion-content padding="true" compile="listaEnvios" style="text-align:center">
+                <strong>No hay solicitudes todavia</strong>
+                <!--<div class="card" id="confirmado">
+                            <div class="item item-text-wrap" style="background-color:rgba(123, 222, 151, 0.4);">
+                                <p style="text-align:center;"><strong>Confirmado</strong></p>
+                                <p>Nombre: <strong>{{shipmentNombre}}</strong></p>
+                                <p>Destino: <strong>{{shipmentDestino}}</strong></p>
+                                <p>Origen: <strong>{{shipmentOrigen}}</strong></p>
+                                <p>Fecha: <strong>{{shipmentFecha}}</strong></p>
+                                <a href="#/lista" class="button button-full button-energized">Voy por el Paquete</a>
+                                <a href="#/lista" class="button button-full button-energized" ng-disabled="true">Recogido</a>
+                                <a href="#/lista" class="button button-full button-energized" ng-disabled="true">Entregado</a>
                             </div>
-                            <div class="form-group">
-                                <div class="form-group Tenvios">
-                                    <p>México-Puebla</p>
-                                    <label ng-repeat="label in weekDayLabels">
-                                        <input type="checkbox" checklist-model="mexico.weekDays" checklist-value="$index">{{label}}
-                                    </label>
-                                </div>
-                            </div>
-                            <button class="button button-small button-energized pull-right" ng-click="guardarOpciones()">Guardar</button>
                         </div>
+                        <div class="card" id="pendiente">
+                            <div class="item item-text-wrap" style="background-color:rgba(182, 193, 185, 0.4);">
+                                <p style="text-align:center;"><strong>Pendiente</strong></p>
+                                <p>Nombre: <strong>{{shipmentNombre}}</strong></p>
+                                <p>Destino: <strong>{{shipmentDestino}}</strong></p>
+                                <p>Origen: <strong>{{shipmentOrigen}}</strong></p>
+                                <p>Fecha: <strong>{{shipmentFecha}}</strong></p>
+                                <a href="#/lista" class="button button-full button-energized">Ofertar</a>
+                                <a href="#/lista" class="button button-full button-energized">Rechazar</a>
+                            </div>
+                        </div>
+                        <div class="card" id="espera">
+                            <div class="item item-text-wrap" style="background-color:rgb(255, 201, 0);">
+                                <p style="text-align:center;"><strong>En espera</strong></p>
+                                <p>Nombre: <strong>{{shipmentNombre}}</strong></p>
+                                <p>Destino: <strong>{{shipmentDestino}}</strong></p>
+                                <p>Origen: <strong>{{shipmentOrigen}}</strong></p>
+                                <p>Fecha: <strong>{{shipmentFecha}}</strong></p>
+                            </div>
+                        </div>
+                        <br>
+                        <br>-->
+            </ion-content>
+        </ion-view>
+    </script>
+
+    <script id="templates/viajes.html" type="text/ng-template">
+        <ion-view view-title="Viajes">
+            <ion-content padding="true" ng-controller="HomeTabCtrl">
+                <h1>Disponibilidad para viajar</h1>
+                <div class="card" id="pendiente">
+                    <div class="item item-text-wrap" style="background-color:rgba(182, 193, 185, 0.4);">
+                        <p style="text-align:center;"><strong>Opciones de viaje</strong></p>
+                        <div class="form-group">
+                            <div class="form-group Tenvios">
+                                <p>Puebla-México</p>
+
+                                <label ng-repeat="label in weekDayLabels">
+                                    <input type="checkbox" checklist-model="puebla.weekDays" checklist-value="$index">{{label}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group Tenvios">
+                                <p>México-Puebla</p>
+                                <label ng-repeat="label in weekDayLabels">
+                                    <input type="checkbox" checklist-model="mexico.weekDays" checklist-value="$index">{{label}}
+                                </label>
+                            </div>
+                        </div>
+                        <button class="button button-small button-energized pull-right" ng-click="guardarOpciones()">Guardar</button>
                     </div>
-                </ion-content>
-            </ion-view>
-        </script>
+                </div>
+            </ion-content>
+        </ion-view>
+    </script>
 
 
 
@@ -167,6 +168,6 @@
 
 
 
-    </body>
+</body>
 
 </html>
