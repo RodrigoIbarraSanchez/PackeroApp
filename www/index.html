@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/style.css">
 
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.css">
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
 
@@ -46,11 +46,11 @@
                     <div class="list">
                         <label class="item item-input item-floating-label">
                             <span class="input-label">Email</span>
-                            <input ng-model="email" type="text" placeholder="Email">
+                            <input ng-model="email" class="form-control floating-label" type="text" placeholder="Email">
                         </label>
                         <label class="item item-input item-floating-label">
                             <span class="input-label">Contraseña</span>
-                            <input ng-model="pass" type="password" placeholder="Contraseña">
+                            <input ng-model="pass" class="form-control" type="password" placeholder="Contraseña">
                         </label>
                     </div>
                     <div class="spacer" style="height: 40px;"></div>
@@ -66,7 +66,7 @@
     <script id="templates/forgot-password.html" type="text/ng-template">
         <ion-view view-title="Forgot Password">
             <ion-content padding="true">
-                <p>Formulario de recuperación de contraseña</p>
+                <p>Formulario de recuperación de contraseña</p>0
             </ion-content>
         </ion-view>
     </script>
@@ -75,11 +75,11 @@
         <ion-view>
             <ion-tabs class="tabs-icon-top tabs-dark">
 
-                <ion-tab title="Envios" icon="ion-home" href="#/tab/envios">
+                <ion-tab title="Envios" icon="mdi-maps-local-shipping" href="#/tab/envios">
                     <ion-nav-view name="envios-tab"></ion-nav-view>
                 </ion-tab>
 
-                <ion-tab title="Viajes" icon="ion-ios-information" href="#/tab/viajes">
+                <ion-tab title="Viajes" icon="mdi-maps-directions-bike" href="#/tab/viajes">
                     <ion-nav-view name="viajes-tab"></ion-nav-view>
                 </ion-tab>
 
