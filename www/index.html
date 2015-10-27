@@ -99,7 +99,20 @@
                 <ion-list>
                     <ion-refresher pulling-text="Desliza para actualizar" refreshing-text="Cargando..." refreshing-icon="mdi-navigation-refresh" pulling-icon="mdi-editor-vertical-align-bottom" on-refresh="doRefresh()">
                     </ion-refresher>
+
+                    <!--En Espera-->
                     <strong>{{sinSolicitudes}}</strong>
+                    <ion-item class="card" ng-repeat="solicitud in solicitudesEspera">
+                        <div class="item item-text-wrap" style="background-color:rgb(255, 201, 0);">
+                            <p style="text-align:center;"><strong>{{solicitud.status}}</strong></p>
+                            <p>Nombre: <strong>{{solicitud.nombre}} {{solicitud.apellidos}}</strong></p>
+                            <p>Origen: <strong>{{solicitud.origen}}</strong></p>
+                            <p>Destino: <strong>{{solicitud.destino}}</strong></p>
+                            <p>Fecha: <strong>{{solicitud.fecha}}</strong></p>
+                        </div>
+                    </ion-item>
+
+                    <!--Confirmada-->
                     <ion-item class="card" ng-repeat="solicitud in solicitudesConfirmadas">
                         <div class="item item-text-wrap" style="background-color:rgba(123, 222, 151, 0.4);">
                             <p style="text-align:center;"><strong>{{solicitud.status}}</strong></p>
@@ -113,6 +126,7 @@
                         </div>
                     </ion-item>
 
+                    <!--Pendiente-->
                     <ion-item class="card" ng-repeat="solicitud in solicitudesPendientes">
                         <div class="item item-text-wrap" style="background-color:rgba(182, 193, 185, 0.4);">
                             <p style="text-align:center;"><strong>{{solicitud.status}}</strong></p>
@@ -122,15 +136,6 @@
                             <p>Fecha: <strong>{{solicitud.fecha}}</strong></p>
                             <button class="button button-full button-energized" ng-click="ofertarSolicitud(solicitud.id)">Ofertar</button>
                             <button class="button button-full button-energized" ng-click="rechazarSolicitud(solicitud.id)">Rechazar</button>
-                        </div>
-                    </ion-item>
-                    <ion-item class="card" ng-repeat="solicitud in solicitudesEspera">
-                        <div class="item item-text-wrap" style="background-color:rgb(255, 201, 0);">
-                            <p style="text-align:center;"><strong>{{solicitud.status}}</strong></p>
-                            <p>Nombre: <strong>{{solicitud.nombre}} {{solicitud.apellidos}}</strong></p>
-                            <p>Origen: <strong>{{solicitud.origen}}</strong></p>
-                            <p>Destino: <strong>{{solicitud.destino}}</strong></p>
-                            <p>Fecha: <strong>{{solicitud.fecha}}</strong></p>
                         </div>
                     </ion-item>
                     <br>
