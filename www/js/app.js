@@ -119,8 +119,9 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
             consumirAPI.actualizarOpcionViaje(opcionMexicoId, 261, 260, $scope.mexico.weekDays, token);
         }
     }
-
 })
+
+
 
 //creamos nuestro servicio
 .service('consumirAPI', function ($http) {
