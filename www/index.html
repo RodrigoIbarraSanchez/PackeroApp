@@ -96,13 +96,10 @@
     <script id="templates/envios.html" type="text/ng-template">
         <ion-view view-title="Envios">
             <ion-content padding="true" ng-controller="AppCtrl">
-                <br>
-                <br>
-                <strong>{{sinSolicitudes}}</strong>
-
                 <ion-list>
                     <ion-refresher pulling-text="Desliza para actualizar" refreshing-text="Cargando..." refreshing-icon="mdi-navigation-refresh" pulling-icon="mdi-editor-vertical-align-bottom" on-refresh="doRefresh()">
                     </ion-refresher>
+                    <strong>{{sinSolicitudes}}</strong>
                     <ion-item class="card" ng-repeat="solicitud in solicitudesConfirmadas">
                         <div class="item item-text-wrap" style="background-color:rgba(123, 222, 151, 0.4);">
                             <p style="text-align:center;"><strong>{{solicitud.status}}</strong></p>
