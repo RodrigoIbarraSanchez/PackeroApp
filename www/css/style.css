@@ -1,0 +1,75 @@
+.Tenvios {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.sizePaquetes input.checkinput:not(:checked) {
+    color: #B5B5B5!important;
+}
+
+input.checkinput:not(:checked) {
+    color: #fff;
+    margin-right: 10px;
+}
+
+input.checkinput {
+    display: inline;
+    -webkit-appearance: none;
+    outline: 0;
+    cursor: pointer;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin: 4px 0 0;
+    margin-top: 1px \9;
+    line-height: normal;
+}
+
+.checkbox {
+    display: block;
+    font-size: 20px;
+    -webkit-appearance: none;
+    outline: 0;
+    cursor: pointer;
+    margin: 2px!important;
+    padding: 3px!important;
+}
+
+.checkbox:checked {
+    color: #FAFF24;
+    background-color: rgba(105, 105, 105, 0.15);
+    border-radius: 5px!important;
+    text-shadow: 2px 2px 2px rgba(14, 14, 14, 0.59);
+}
+
+.checkbox-Lu:before {
+    content: 'Lu';
+}
+
+.checkbox-Ma:before {
+    content: 'Ma';
+}
+
+.checkbox-Mi:before {
+    content: 'Mi';
+}
+
+.checkbox-Ju:before {
+    content: 'Ju';
+}
+
+.checkbox-Vi:before {
+    content: 'Vi';
+}
+
+.checkbox-Sa:before {
+    content: 'Sa';
+}
+
+.checkbox-Do:before {
+    content: 'Do';
+}

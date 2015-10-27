@@ -9,8 +9,10 @@
 
     <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/style.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.css">
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
 
@@ -45,11 +47,11 @@
                     <div class="list">
                         <label class="item item-input item-floating-label">
                             <span class="input-label">Email</span>
-                            <input ng-model="email" type="text" placeholder="Email">
+                            <input ng-model="email" class="form-control floating-label" type="text" placeholder="Email">
                         </label>
                         <label class="item item-input item-floating-label">
                             <span class="input-label">Contraseña</span>
-                            <input ng-model="pass" type="password" placeholder="Contraseña">
+                            <input ng-model="pass" class="form-control" type="password" placeholder="Contraseña">
                         </label>
                     </div>
                     <div class="spacer" style="height: 40px;"></div>
@@ -74,11 +76,11 @@
         <ion-view>
             <ion-tabs class="tabs-icon-top tabs-dark">
 
-                <ion-tab title="Envios" icon="ion-home" href="#/tab/envios">
+                <ion-tab title="Envios" icon="mdi-maps-local-shipping" href="#/tab/envios">
                     <ion-nav-view name="envios-tab"></ion-nav-view>
                 </ion-tab>
 
-                <ion-tab title="Viajes" icon="ion-ios-information" href="#/tab/viajes">
+                <ion-tab title="Viajes" icon="mdi-maps-directions-bike" href="#/tab/viajes">
                     <ion-nav-view name="viajes-tab"></ion-nav-view>
                 </ion-tab>
 
@@ -91,37 +93,39 @@
 
     <script id="templates/envios.html" type="text/ng-template">
         <ion-view view-title="Envios">
-            <ion-content padding="true">
-                <div class="card" id="confirmado">
+            <ion-content padding="true" compile="listaEnvios">
+                <strong>{{sinSolicitudes}}</strong>
+
+                <div class="card" ng-repeat="solicitud in solicitudesConfirmadas">
                     <div class="item item-text-wrap" style="background-color:rgba(123, 222, 151, 0.4);">
-                        <p style="text-align:center;"><strong>Confirmado</strong></p>
-                        <p>Nombre: <strong>{{shipmentNombre}}</strong></p>
-                        <p>Destino: <strong>{{shipmentDestino}}</strong></p>
-                        <p>Origen: <strong>{{shipmentOrigen}}</strong></p>
-                        <p>Fecha: <strong>{{shipmentFecha}}</strong></p>
-                        <a href="#/lista" class="button button-full button-energized">Voy por el Paquete</a>
-                        <a href="#/lista" class="button button-full button-energized" ng-disabled="true">Recogido</a>
-                        <a href="#/lista" class="button button-full button-energized" ng-disabled="true">Entregado</a>
+                        <p style="text-align:center;"><strong>{{solicitud.status}}</strong></p>
+                        <p>Nombre: <strong>{{solicitud.nombre}} {{solicitud.apellidos}}</strong></p>
+                        <p>Origen: <strong>{{solicitud.origen}}</strong></p>
+                        <p>Destino: <strong>{{solicitud.destino}}</strong></p>
+                        <p>Fecha: <strong>{{solicitud.fecha}}</strong></p>
+                        <button class="button button-full button-energized">Voy por el Paquete</button>
+                        <button class="button button-full button-energized" ng-disabled="true">Recogido</button>
+                        <button class="button button-full button-energized" ng-disabled="true">Entregado</button>
                     </div>
                 </div>
-                <div class="card" id="pendiente">
+                <div class="card" ng-repeat="solicitud in solicitudesPendientes">
                     <div class="item item-text-wrap" style="background-color:rgba(182, 193, 185, 0.4);">
-                        <p style="text-align:center;"><strong>Pendiente</strong></p>
-                        <p>Nombre: <strong>{{shipmentNombre}}</strong></p>
-                        <p>Destino: <strong>{{shipmentDestino}}</strong></p>
-                        <p>Origen: <strong>{{shipmentOrigen}}</strong></p>
-                        <p>Fecha: <strong>{{shipmentFecha}}</strong></p>
-                        <a href="#/lista" class="button button-full button-energized">Ofertar</a>
-                        <a href="#/lista" class="button button-full button-energized">Rechazar</a>
+                        <p style="text-align:center;"><strong>{{solicitud.status}}</strong></p>
+                        <p>Nombre: <strong>{{solicitud.nombre}} {{solicitud.apellidos}}</strong></p>
+                        <p>Origen: <strong>{{solicitud.origen}}</strong></p>
+                        <p>Destino: <strong>{{solicitud.destino}}</strong></p>
+                        <p>Fecha: <strong>{{solicitud.fecha}}</strong></p>
+                        <button class="button button-full button-energized" ng-click="ofertarSolicitud(solicitud.id)">Ofertar</button>
+                        <button class="button button-full button-energized" ng-click="rechazarSolicitud(solicitud.id)">Rechazar</button>
                     </div>
                 </div>
-                <div class="card" id="espera">
+                <div class="card" ng-repeat="solicitud in solicitudesEspera">
                     <div class="item item-text-wrap" style="background-color:rgb(255, 201, 0);">
-                        <p style="text-align:center;"><strong>En espera</strong></p>
-                        <p>Nombre: <strong>{{shipmentNombre}}</strong></p>
-                        <p>Destino: <strong>{{shipmentDestino}}</strong></p>
-                        <p>Origen: <strong>{{shipmentOrigen}}</strong></p>
-                        <p>Fecha: <strong>{{shipmentFecha}}</strong></p>
+                        <p style="text-align:center;"><strong>{{solicitud.status}}</strong></p>
+                        <p>Nombre: <strong>{{solicitud.nombre}} {{solicitud.apellidos}}</strong></p>
+                        <p>Origen: <strong>{{solicitud.origen}}</strong></p>
+                        <p>Destino: <strong>{{solicitud.destino}}</strong></p>
+                        <p>Fecha: <strong>{{solicitud.fecha}}</strong></p>
                     </div>
                 </div>
                 <br>
@@ -132,31 +136,30 @@
 
     <script id="templates/viajes.html" type="text/ng-template">
         <ion-view view-title="Viajes">
-            <ion-content padding="true" ng-controller="HomeTabCtrl">
-                <h1>Disponibilidad para viajar</h1>
+            <ion-content padding="true" ng-controller="HomeTabCtrl" style="text-align:center">
+                <h3>Disponibilidad para viajar</h3>
                 <div class="card" id="pendiente">
                     <div class="item item-text-wrap" style="background-color:rgba(182, 193, 185, 0.4);">
-                        <p style="text-align:center;"><strong>Opciones de viaje</strong></p>
                         <div class="form-group">
                             <div class="form-group Tenvios">
-                                <p>Puebla-México</p>
-
+                                <h2>Puebla-México</h2>
                                 <label ng-repeat="label in weekDayLabels">
-                                    <input type="checkbox" checklist-model="puebla.weekDays" checklist-value="$index">{{label}}
+                                    <input type="checkbox" class="checkbox checkbox-{{label}}" checklist-model="puebla.weekDays" checklist-value="$index">
                                 </label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-group Tenvios">
-                                <p>México-Puebla</p>
+                                <h2>México-Puebla</h2>
                                 <label ng-repeat="label in weekDayLabels">
-                                    <input type="checkbox" checklist-model="mexico.weekDays" checklist-value="$index">{{label}}
+                                    <input type="checkbox" class="checkbox checkbox-{{label}}" checklist-model="mexico.weekDays" checklist-value="$index">
                                 </label>
                             </div>
                         </div>
                         <button class="button button-small button-energized pull-right" ng-click="guardarOpciones()">Guardar</button>
                     </div>
                 </div>
+                <button class="button button-block button-energized pull-right" ng-click="guardarOpciones()">Guardar</button>
             </ion-content>
         </ion-view>
     </script>

@@ -59,6 +59,11 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
     var opcionPueblaId = 0;
     var opcionMexicoId = 0;
 
+    $scope.sinSolicitudes = 'No hay solicitudes todavía';
+    $scope.solicitudesPendientes = {};
+    $scope.solicitudesEspera = {};
+    $scope.solicitudesConfirmadas = {};
+
     $scope.weekDayLabels = [
         'Lu',
         'Ma',
@@ -76,6 +81,53 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
     $scope.mexico = {
         weekDays: []
     };
+
+    $scope.ofertarSolicitud = function (id) {
+        consumirAPI.ofertarSolicitud(id, token, function () {
+            recargarSolicitudes();
+        });
+    }
+
+    $scope.rechazarSolicitud = function (id) {
+        consumirAPI.rechazarSolicitud(id, token, function () {
+            recargarSolicitudes();
+        });
+    }
+
+    recargarSolicitudes();
+
+    function recargarSolicitudes() {
+        consumirAPI.obtenerSolicitudes(token, function (solicitudes) {
+            if (solicitudes.length > 0) {
+                $scope.sinSolicitudes = '';
+            }
+
+            var solicitudesPendientes = [];
+            var solicitudesEspera = [];
+            var solicitudesConfirmadas = [];
+            for (var i = 0; i < solicitudes.length; i++) {
+                //Detectar si es solicitud PENDIENTE con su status 10
+                if (solicitudes[i].statusId == 10) {
+                    //Agregar solicitudes pendientes
+                    solicitudesPendientes.push(solicitudes[i]);
+                }
+                //Detectar si es solicitud en ESPERA con su status 20
+                if (solicitudes[i].statusId == 20) {
+                    //Agregar solicitudes en espera
+                    solicitudesEspera.push(solicitudes[i]);
+                }
+                //Detectar si es solicitud CONFIRMADA con su status 30
+                if (solicitudes[i].statusId == 30) {
+                    //Agregar solicitudes confirmadas
+                    solicitudesConfirmadas.push(solicitudes[i]);
+                }
+            }
+
+            $scope.solicitudesPendientes = solicitudesPendientes;
+            $scope.solicitudesEspera = solicitudesEspera;
+            $scope.solicitudesConfirmadas = solicitudesConfirmadas;
+        });
+    }
 
     consumirAPI.obtenerOpcionesViaje(token, function (opcionesViaje) {
         //Recorrer todas las opciones
@@ -107,14 +159,22 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
 
         //crear o actualizar Puebla - México
         if (!existePueblaMexico) {
-            consumirAPI.opcionViaje(260, 261, $scope.puebla.weekDays, token);
+            consumirAPI.opcionViaje(260, 261, $scope.puebla.weekDays, token, function (id) {
+                existePueblaMexico = true;
+                opcionPueblaId = parseInt(id);
+                alert("Guardado correctamente");
+            });
         } else {
             consumirAPI.actualizarOpcionViaje(opcionPueblaId, 260, 261, $scope.puebla.weekDays, token);
         }
 
         //crear o actualizar México - Puebla
         if (!existeMexicoPuebla) {
-            consumirAPI.opcionViaje(261, 260, $scope.mexico.weekDays, token);
+            consumirAPI.opcionViaje(261, 260, $scope.mexico.weekDays, token, function (id) {
+                existeMexicoPuebla = true;
+                opcionMexicoId = parseInt(id);
+                alert("Guardado correctamente");
+            });
         } else {
             consumirAPI.actualizarOpcionViaje(opcionMexicoId, 261, 260, $scope.mexico.weekDays, token);
         }
@@ -126,8 +186,41 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
 //creamos nuestro servicio
 .service('consumirAPI', function ($http) {
 
+    this.obtenerSolicitudes = function (token, callback) {
+        $http.get('http://packandpack.com/api/packero/solicitudes?access_token=' + token)
+            .then(function (response) {
+                //Hacer algo con response
+                callback(response.data);
+            }, function (x) {
+                //Error en x 
+            });
+    }
 
-    this.opcionViaje = function (origenId, destinoId, weekDays, token) {
+    this.ofertarSolicitud = function (id, token, callback) {
+        $http.put('http://packandpack.com/api/packero/solicitudes?access_token=' + token, {
+            id: id,
+            status: 20
+        }).then(function (response) {
+                //Recargar solicitudes
+                callback();
+            },
+            function (x) {
+                //Error en x  
+            });
+    }
+
+    this.rechazarSolicitud = function (id, token, callback) {
+        $http.delete('http://packandpack.com/api/packero/solicitudes?id=' + id + '&access_token=' + token).then(function (response) {
+                //Recargar solicitudes
+                callback();
+            },
+            function (x) {
+                //Error en x  
+            });
+    }
+
+
+    this.opcionViaje = function (origenId, destinoId, weekDays, token, callback) {
 
         $http.post('http://packandpack.com/api/viajes/opciones?access_token=' + token, {
             origenId: origenId,
@@ -135,6 +228,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
             weekDays: weekDays
         }).then(function (response) {
             // Hacer algo con response
+            callback(response.data);
         }, function (x) {
             // Error en x
         });
@@ -148,22 +242,25 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
             grant_type: "password",
             client_id: "1_3bcbxd9e24g0gk4swg0kwgcwg4o8k8g4g888kwc44gcc0gwwk4",
             client_secret: "4ok2x70rlfokc8g0wws8c8kwcokw80k44sg48goc0ok4w0so0k",
-            username: "p@p.com",
-            password: "12345678"
+            username: email,
+            password: pass
         }).then(function (response) {
 
-            if (!response.data.access_token) {
-                // Error de acceso
-                alert("El correo o la contraseña son incorrectos");
-            } else {
-                var token = response.data.access_token;
-                callback(token);
-            }
+                if (!response.data.access_token) {
+                    // Error de acceso
+                    alert("El correo o la contraseña son incorrectos");
+                } else {
 
-        }, function (x) {
-            // Error de servidor
-            alert("El correo o la contraseña son incorrectos");
-        });
+                    //alert("Acceso correcto");
+                    var token = response.data.access_token;
+                    callback(token);
+                }
+
+            },
+            function (x) {
+                // Error de servidor
+                alert("El correo o la contraseña son incorrectos");
+            });
     }
 
     this.obtenerOpcionesViaje = function (token, callback) {
@@ -184,7 +281,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model'])
             weekDays: weekDays
         }).then(function (response) {
             // Hacer algo con response
-            alert("se hizo put satisfactorio");
+            alert("Guardado correctamente");
         }, function (x) {
             // Error en x
         });
