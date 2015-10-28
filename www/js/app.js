@@ -62,17 +62,17 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova'])
 
     $scope.ofertarSolicitud = function (id) {
         consumirAPI.ofertarSolicitud(id, token, function () {
-            recargarSolicitudes();
+            recargarSolicitudes(function () {});
         });
     }
 
     $scope.rechazarSolicitud = function (id) {
         consumirAPI.rechazarSolicitud(id, token, function () {
-            recargarSolicitudes();
+            recargarSolicitudes(function () {});
         });
     }
 
-    recargarSolicitudes();
+    recargarSolicitudes(function () {});
 
     function recargarSolicitudes(callback) {
         consumirAPI.obtenerSolicitudes(token, function (solicitudes) {
