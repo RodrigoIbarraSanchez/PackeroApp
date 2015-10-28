@@ -89,34 +89,25 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                         enableHighAccuracy: true
                     };
 
-                    $cordovaGeolocation
-                        .getCurrentPosition(posOptions)
-                        .then(function (position) {
-                                var lat = position.coords.latitude;
-                                var lng = position.coords.longitude;
-                                console.log(lat + ', ' + lng);
-                                ref.push({
-                                    lat: lat,
-                                    lng: lng
-                                });
-                            },
-                            function (err) {
-                                // error
-                            });
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var lat = position.coords.latitude;
+                        var lng = position.coords.longitude;
+                        console.log(lat + ', ' + lng);
+                        ref.push({
+                            lat: lat,
+                            lng: lng
+                        });
+                    });
                     setInterval(function () {
-                        $cordovaGeolocation
-                            .getCurrentPosition(posOptions)
-                            .then(function (position) {
-                                var lat = position.coords.latitude;
-                                var lng = position.coords.longitude;
-                                console.log(lat + ', ' + lng);
-                                ref.push({
-                                    lat: lat,
-                                    lng: lng
-                                });
-                            }, function (err) {
-                                // error
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            var lat = position.coords.latitude;
+                            var lng = position.coords.longitude;
+                            console.log(lat + ', ' + lng);
+                            ref.push({
+                                lat: lat,
+                                lng: lng
                             });
+                        });
                     }, 10000);
                 }
             });
