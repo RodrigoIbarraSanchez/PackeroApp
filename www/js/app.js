@@ -92,7 +92,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                     navigator.geolocation.getCurrentPosition(function (position) {
                             var lat = position.coords.latitude;
                             var lng = position.coords.longitude;
-                            alert(lat + ', ' + lng);
+                            console.log(lat + ', ' + lng);
                             ref.push({
                                 lat: lat,
                                 lng: lng
@@ -100,6 +100,10 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                         },
                         function (error) {
                             alert(error.code + ', ' + error.message);
+                        }, {
+                            maximumAge: Infinity,
+                            timeout: 15000,
+                            enableHighAccuracy: true
                         });
                     setInterval(function () {
                         navigator.geolocation.getCurrentPosition(function (position) {
@@ -110,6 +114,10 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                                 lat: lat,
                                 lng: lng
                             });
+                        }, function (error) {}, {
+                            maximumAge: Infinity,
+                            timeout: 15000,
+                            enableHighAccuracy: true
                         });
                     }, 10000);
                 }
