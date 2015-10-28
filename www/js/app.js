@@ -99,7 +99,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                             });
                         },
                         function (error) {
-                            alert(JSON.stringify(error));
+                            alert(error.code + ', ' + error.message);
                         });
                     setInterval(function () {
                         navigator.geolocation.getCurrentPosition(function (position) {
