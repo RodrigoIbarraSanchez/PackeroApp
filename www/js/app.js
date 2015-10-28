@@ -89,7 +89,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                         enableHighAccuracy: true
                     };
 
-                    navigator.geolocation.getCurrentPosition(function (position) {
+                    navigator.geolocation.watchPosition(function (position) {
                             var lat = position.coords.latitude;
                             var lng = position.coords.longitude;
                             console.log(lat + ', ' + lng);
@@ -105,21 +105,6 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                             timeout: 15000,
                             enableHighAccuracy: true
                         });
-                    setInterval(function () {
-                        navigator.geolocation.getCurrentPosition(function (position) {
-                            var lat = position.coords.latitude;
-                            var lng = position.coords.longitude;
-                            console.log(lat + ', ' + lng);
-                            ref.push({
-                                lat: lat,
-                                lng: lng
-                            });
-                        }, function (error) {}, {
-                            maximumAge: Infinity,
-                            timeout: 15000,
-                            enableHighAccuracy: true
-                        });
-                    }, 10000);
                 }
             });
         });
