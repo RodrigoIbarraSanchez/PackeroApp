@@ -51,7 +51,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova'])
 
 })
 
-.controller('AppCtrl', function ($scope, $cordovaToast, $rootScope, $state, consumirAPI) {
+.controller('AppCtrl', function ($scope, $cordovaToast, $rootScope, $state, consumirAPI, $cordovaGeolocation) {
 
     var token = $rootScope.token;
 
@@ -70,6 +70,36 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova'])
         consumirAPI.rechazarSolicitud(id, token, function () {
             recargarSolicitudes(function () {});
         });
+    }
+
+    $scope.startTrip = function () {
+
+        var posOptions = {
+            timeout: 10000,
+            enableHighAccuracy: true
+        };
+
+        $cordovaGeolocation
+            .getCurrentPosition(posOptions)
+            .then(function (position) {
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+                alert(lat + ', ' + lng);
+            }, function (err) {
+                // error
+            });
+        setInterval(function () {
+            $cordovaGeolocation
+                .getCurrentPosition(posOptions)
+                .then(function (position) {
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    alert(lat + ', ' + lng);
+                }, function (err) {
+                    // error
+                });
+        }, 10000);
+
     }
 
     recargarSolicitudes(function () {});
