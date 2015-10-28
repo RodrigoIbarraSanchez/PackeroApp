@@ -81,9 +81,9 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
             var ref = new Firebase("https://packandpack.firebaseio.com/trips/" + packeroId + "/" + viajeId + "/positions");
             ref.authWithCustomToken(data.token, function (error, authData) {
                 if (error) {
-                    console.log("Login Failed!", error);
+                    alert("Login Failed!", error);
                 } else {
-                    console.log("Login Succeeded!", authData);
+                    alert("Login Succeeded!", authData);
                     var posOptions = {
                         timeout: 10000,
                         enableHighAccuracy: true
