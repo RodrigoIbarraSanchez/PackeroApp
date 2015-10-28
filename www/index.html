@@ -30,6 +30,11 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <!-- Componentes-->
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
 </head>
 
 <body ng-app="ionicApp">
@@ -120,7 +125,7 @@
                             <p>Origen: <strong>{{solicitud.origen}}</strong></p>
                             <p>Destino: <strong>{{solicitud.destino}}</strong></p>
                             <p>Fecha: <strong>{{solicitud.fecha}}</strong></p>
-                            <button class="button button-full button-energized" ng-click="startTrip()">Voy por el Paquete</button>
+                            <button class="button button-full button-energized" ng-click="startTrip(solicitud.tripId, solicitud.packeroId)">Voy por el Paquete</button>
                             <button class="button button-full button-energized" ng-disabled="true">Recogido</button>
                             <button class="button button-full button-energized" ng-disabled="true">Entregado</button>
                         </div>

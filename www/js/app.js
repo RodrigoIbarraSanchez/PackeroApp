@@ -1,4 +1,4 @@
-angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova'])
+angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"])
 
 .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -72,33 +72,55 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova'])
         });
     }
 
-    $scope.startTrip = function () {
+    $scope.startTrip = function (viajeId, packeroId) {
 
-        var posOptions = {
-            timeout: 10000,
-            enableHighAccuracy: true
-        };
+        consumirAPI.iniciarViaje(viajeId, token, function (data) {
 
-        $cordovaGeolocation
-            .getCurrentPosition(posOptions)
-            .then(function (position) {
-                var lat = position.coords.latitude;
-                var lng = position.coords.longitude;
-                alert(lat + ', ' + lng);
-            }, function (err) {
-                // error
+            console.log(data);
+
+            var ref = new Firebase("https://packandpack.firebaseio.com/trips/" + packeroId + "/" + viajeId + "/positions");
+            ref.authWithCustomToken(data.token, function (error, authData) {
+                if (error) {
+                    console.log("Login Failed!", error);
+                } else {
+                    console.log("Login Succeeded!", authData);
+                    var posOptions = {
+                        timeout: 10000,
+                        enableHighAccuracy: true
+                    };
+
+                    $cordovaGeolocation
+                        .getCurrentPosition(posOptions)
+                        .then(function (position) {
+                                var lat = position.coords.latitude;
+                                var lng = position.coords.longitude;
+                                console.log(lat + ', ' + lng);
+                                ref.push({
+                                    lat: lat,
+                                    lng: lng
+                                });
+                            },
+                            function (err) {
+                                // error
+                            });
+                    setInterval(function () {
+                        $cordovaGeolocation
+                            .getCurrentPosition(posOptions)
+                            .then(function (position) {
+                                var lat = position.coords.latitude;
+                                var lng = position.coords.longitude;
+                                console.log(lat + ', ' + lng);
+                                ref.push({
+                                    lat: lat,
+                                    lng: lng
+                                });
+                            }, function (err) {
+                                // error
+                            });
+                    }, 10000);
+                }
             });
-        setInterval(function () {
-            $cordovaGeolocation
-                .getCurrentPosition(posOptions)
-                .then(function (position) {
-                    var lat = position.coords.latitude;
-                    var lng = position.coords.longitude;
-                    alert(lat + ', ' + lng);
-                }, function (err) {
-                    // error
-                });
-        }, 10000);
+        });
 
     }
 
@@ -327,5 +349,15 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova'])
         }, function (x) {
             // Error en x
         });
+    }
+
+    this.iniciarViaje = function (id, token, callback) {
+        $http.put('http://packandpack.com/api/trips/' + id + '/start?access_token=' + token)
+            .then(function (response) {
+                // Hacer algo con response
+                callback(response.data);
+            }, function (x) {
+                // Error en x
+            });
     }
 });
