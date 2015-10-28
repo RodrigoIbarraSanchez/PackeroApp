@@ -1,3 +1,7 @@
+.background {
+    background-color: #FFFFFF;
+}
+
 .Tenvios {
     text-align: center;
 }
@@ -73,3 +77,4 @@ input[type="checkbox"] {
 .checkbox-Do:before {
     content: 'Do';
 }
+
