@@ -90,14 +90,17 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                     };
 
                     navigator.geolocation.getCurrentPosition(function (position) {
-                        var lat = position.coords.latitude;
-                        var lng = position.coords.longitude;
-                        console.log(lat + ', ' + lng);
-                        ref.push({
-                            lat: lat,
-                            lng: lng
+                            var lat = position.coords.latitude;
+                            var lng = position.coords.longitude;
+                            alert(lat + ', ' + lng);
+                            ref.push({
+                                lat: lat,
+                                lng: lng
+                            });
+                        },
+                        function (error) {
+                            alert(JSON.stringify(error));
                         });
-                    });
                     setInterval(function () {
                         navigator.geolocation.getCurrentPosition(function (position) {
                             var lat = position.coords.latitude;
