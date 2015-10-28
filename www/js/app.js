@@ -84,27 +84,46 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                     console.log("Login Failed!", error);
                 } else {
                     console.log("Login Succeeded!", authData);
-                    var posOptions = {
-                        timeout: 10000,
-                        enableHighAccuracy: true
-                    };
 
-                    navigator.geolocation.watchPosition(function (position) {
-                            var lat = position.coords.latitude;
-                            var lng = position.coords.longitude;
+
+                    navigator.geolocation.getCurrentPosition(function (pos) {
+                            var lat = pos.coords.latitude;
+                            var lng = pos.coords.longitude;
                             console.log(lat + ', ' + lng);
                             ref.push({
                                 lat: lat,
                                 lng: lng
                             });
+
+                            navigator.geolocation.watchPosition(function (position) {
+                                    lat = position.coords.latitude;
+                                    lng = position.coords.longitude;
+                                },
+                                function (error) {
+                                    console.log(error.code + ', ' + error.message);
+                                }, {
+                                    maximumAge: 0,
+                                    timeout: 5000,
+                                    enableHighAccuracy: true
+                                });
+
+                            setInterval(function () {
+                                console.log(lat + ', ' + lng);
+                                ref.push({
+                                    lat: lat,
+                                    lng: lng
+                                });
+                            }, 10000);
+
                         },
                         function (error) {
                             alert(error.code + ', ' + error.message);
                         }, {
-                            maximumAge: Infinity,
-                            timeout: 15000,
+                            maximumAge: 0,
+                            timeout: 5000,
                             enableHighAccuracy: true
                         });
+
                 }
             });
         });
