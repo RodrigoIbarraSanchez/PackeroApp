@@ -54,6 +54,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
 .controller('AppCtrl', function ($scope, $cordovaToast, $rootScope, $state, consumirAPI, $cordovaGeolocation) {
 
     var token = $rootScope.token;
+    var detener = false;
 
     $scope.sinSolicitudes = 'No hay solicitudes todavía';
     $scope.solicitudesPendientes = {};
@@ -68,6 +69,19 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
 
     $scope.rechazarSolicitud = function (id) {
         consumirAPI.rechazarSolicitud(id, token, function () {
+            recargarSolicitudes(function () {});
+        });
+    }
+
+    $scope.entregarEnvio = function (id) {
+        consumirAPI.entregarEnvio(id, token, function () {
+            detener = true;
+            recargarSolicitudes(function () {});
+        });
+    }
+
+    $scope.recogerEnvio = function (id) {
+        consumirAPI.recogerEnvio(id, token, function () {
             recargarSolicitudes(function () {});
         });
     }
@@ -92,11 +106,12 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                             var lat = pos.coords.latitude;
                             var lng = pos.coords.longitude;
                             console.log(lat + ', ' + lng);
-                            ref.push({
-                                lat: lat,
-                                lng: lng
-                            });
-
+                            if (!detener) {
+                                ref.push({
+                                    lat: lat,
+                                    lng: lng
+                                });
+                            }
                             navigator.geolocation.watchPosition(function (position) {
                                     lat = position.coords.latitude;
                                     lng = position.coords.longitude;
@@ -115,11 +130,14 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
 
                             /*setInterval(function () {
                                 console.log(lat + ', ' + lng);
+                                if (!detener) {
                                 ref.push({
                                     lat: lat,
                                     lng: lng
                                 });
+                            }
                             }, 10000);*/
+
 
                         },
                         function (error) {
@@ -368,6 +386,25 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
             .then(function (response) {
                 // Hacer algo con response
                 callback(response.data);
+            }, function (x) {
+                // Error en x
+            });
+    }
+
+    this.recogerEnvio = function (id, token, callback) {
+        $http.put('http://packandpack.com/api/shipments/' + id + '/pick?access_token=' + token)
+            .then(function (response) {
+                // Hacer algo con response
+                callback();
+            }, function (x) {
+                // Error en x
+            });
+    }
+    this.entregarEnvio = function (id, token, callback) {
+        $http.put('http://packandpack.com/api/shipments/' + id + '/deliver?access_token=' + token)
+            .then(function (response) {
+                // Hacer algo con response
+                callback();
             }, function (x) {
                 // Error en x
             });
