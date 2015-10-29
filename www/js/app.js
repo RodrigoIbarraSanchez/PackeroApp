@@ -54,7 +54,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
 .controller('AppCtrl', function ($scope, $cordovaToast, $rootScope, $state, consumirAPI, $cordovaGeolocation) {
 
     var token = $rootScope.token;
-    var detener = false;
+    var generarPosiciones;
 
     $scope.sinSolicitudes = 'No hay solicitudes todavía';
     $scope.solicitudesPendientes = {};
@@ -75,7 +75,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
 
     $scope.entregarEnvio = function (id) {
         consumirAPI.entregarEnvio(id, token, function () {
-            detener = true;
+            navigator.geolocation.clearWatch(generarPosiciones);
             recargarSolicitudes(function () {});
         });
     }
@@ -106,21 +106,18 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                             var lat = pos.coords.latitude;
                             var lng = pos.coords.longitude;
                             console.log(lat + ', ' + lng);
-                            if (!detener) {
-                                ref.push({
-                                    lat: lat,
-                                    lng: lng
-                                });
-                            }
-                            navigator.geolocation.watchPosition(function (position) {
+
+                            ref.push({
+                                lat: lat,
+                                lng: lng
+                            });
+                            generarPosiciones = navigator.geolocation.watchPosition(function (position) {
                                     lat = position.coords.latitude;
                                     lng = position.coords.longitude;
-                                    if (!detener) {
-                                        ref.push({
-                                            lat: lat,
-                                            lng: lng
-                                        });
-                                    }
+                                    ref.push({
+                                        lat: lat,
+                                        lng: lng
+                                    });
                                 },
                                 function (error) {
                                     console.log(error.code + ', ' + error.message);
@@ -132,12 +129,10 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
 
                             /*setInterval(function () {
                                 console.log(lat + ', ' + lng);
-                                if (!detener) {
                                 ref.push({
                                     lat: lat,
                                     lng: lng
                                 });
-                            }
                             }, 10000);*/
 
 
