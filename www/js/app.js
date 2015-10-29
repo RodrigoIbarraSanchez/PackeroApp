@@ -54,7 +54,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
 .controller('AppCtrl', function ($scope, $cordovaToast, $rootScope, $state, consumirAPI, $cordovaGeolocation) {
 
     var token = $rootScope.token;
-    var generarPosiciones;
+    var generarPosiciones = null;
 
     $scope.sinSolicitudes = 'No hay solicitudes todavía';
     $scope.solicitudesPendientes = {};
