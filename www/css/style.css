@@ -2,6 +2,13 @@
     background-image: url("http://www.packandpack.com/img/bgPackeroApp.jpg");
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
+    z-index: -1;
+    -webkit-filter: blur(13px);
+    -moz-filter: blur(13px);
+    -o-filter: blur(13px);
+    -ms-filter: blur(13px);
+    filter: blur(13px);
 }
 
 .Tenvios {
