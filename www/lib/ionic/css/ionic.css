@@ -4492,7 +4492,7 @@ ion-infinite-scroll:not(.active) .icon:before {
 
 .pane,
 .view {
-  background-image: url("http://thecarefreetraveler.com/wp-content/uploads/2013/08/Road-Trip.jpg");
+  background-color: black;
   position: absolute;
   top: 0;
   right: 0;

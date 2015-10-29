@@ -1,13 +1,7 @@
-.login {
-    background: url(../img/logo.jpg);
+#login {
+    background-image: url("http://www.packandpack.com/img/bgPackeroApp.jpg");
     background-repeat: no-repeat;
-    background-size: contain;
     background-position: center;
-    width: 80%;
-    height: 246px;
-    margin: auto;
-    z-index: 2;
-    position: relative;
 }
 
 .Tenvios {
