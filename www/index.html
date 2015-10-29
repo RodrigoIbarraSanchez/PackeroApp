@@ -46,9 +46,10 @@
 
     <ion-nav-view></ion-nav-view>
 
-    <script id="templates/sign-in.html" type="text/ng-template">
-        <ion-view view-title="Pack&Pack">
+    <script id="templates/sign-in.html" class="login" type="text/ng-template">
+        <ion-view hide-nav-bar="true">
             <ion-content ng-controller="SignInCtrl">
+                <br>
                 <img src="img/logo.png" style="display: block; margin-left: auto;margin-right: auto;border:none; width: 80px; height: auto;">
                 <form ng-submit="signIn(email, pass)">
                     <div class="list">
@@ -72,7 +73,7 @@
     </script>
 
     <script id="templates/forgot-password.html" type="text/ng-template">
-        <ion-view view-title="Forgot Password">
+        <ion-view view-title="Forgot Password" hide-nav-bar="true">
             <ion-content padding="true">
                 <p>Formulario de recuperación de contraseña</p>
             </ion-content>
@@ -80,7 +81,7 @@
     </script>
 
     <script id="templates/tabs.html" type="text/ng-template">
-        <ion-view>
+        <ion-view hide-nav-bar="true">
             <ion-tabs class="tabs-icon-top tabs-dark">
 
                 <ion-tab title="Envios" icon="mdi-maps-local-shipping" href="#/tab/envios">
@@ -99,7 +100,7 @@
     </script>
 
     <script id="templates/envios.html" type="text/ng-template">
-        <ion-view view-title="Envios">
+        <ion-view view-title="Envios" hide-nav-bar="true">
             <ion-content padding="true" ng-controller="AppCtrl">
                 <ion-list>
                     <ion-refresher pulling-text="Desliza para actualizar" refreshing-text="Cargando..." refreshing-icon="mdi-navigation-refresh" pulling-icon="mdi-editor-vertical-align-bottom" on-refresh="doRefresh()">
@@ -125,7 +126,7 @@
                             <p>Origen: <strong>{{solicitud.origen}}</strong></p>
                             <p>Destino: <strong>{{solicitud.destino}}</strong></p>
                             <p>Fecha: <strong>{{solicitud.fecha}}</strong></p>
-                            <button class="button button-full button-energized" ng-click="startTrip(solicitud.tripId, solicitud.packeroId)">Voy por el Paquete</button>
+                            <button class="button button-full button-energized" ng-class="{'hidden':solicitud.statusTripId!=10}" ng-click="startTrip(solicitud.tripId, solicitud.packeroId)">Voy por el Paquete</button>
                             <button class="button button-full button-energized" ng-disabled="true">Recogido</button>
                             <button class="button button-full button-energized" ng-disabled="true">Entregado</button>
                         </div>
@@ -151,9 +152,9 @@
     </script>
 
     <script id="templates/viajes.html" type="text/ng-template">
-        <ion-view view-title="Viajes">
+        <ion-view view-title="Viajes" hide-nav-bar="true">
             <ion-content padding="true" ng-controller="HomeTabCtrl" style="text-align:center">
-                <h3>Disponibilidad para viajar</h3>
+                <h3 style="color:white">Disponibilidad para viajar</h3>
                 <div class="card" id="pendiente">
                     <div class="item item-text-wrap" style="background-color:rgba(182, 193, 185, 0.4);">
                         <div class="form-group">

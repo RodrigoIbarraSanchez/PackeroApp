@@ -78,7 +78,9 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
 
             console.log(data);
 
-            var ref = new Firebase("https://packandpack.firebaseio.com/trips/" + packeroId + "/" + viajeId + "/positions");
+            recargarSolicitudes(function () {});
+
+            var ref = new Firebase("https://packandpack.firebaseio.com/trips/" + viajeId + "/positions");
             ref.authWithCustomToken(data.token, function (error, authData) {
                 if (error) {
                     console.log("Login Failed!", error);

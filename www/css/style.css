@@ -1,5 +1,13 @@
-.background {
-    background-color: #FFFFFF;
+.login {
+    background: url(../img/logo.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 80%;
+    height: 246px;
+    margin: auto;
+    z-index: 2;
+    position: relative;
 }
 
 .Tenvios {
@@ -77,4 +85,3 @@ input[type="checkbox"] {
 .checkbox-Do:before {
     content: 'Do';
 }
-
