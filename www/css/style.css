@@ -4,11 +4,11 @@
     background-position: center;
     background-size: cover;
     z-index: -1;
-    -webkit-filter: blur(13px);
-    -moz-filter: blur(13px);
-    -o-filter: blur(13px);
-    -ms-filter: blur(13px);
-    filter: blur(13px);
+    -webkit-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -o-filter: blur(8px);
+    -ms-filter: blur(8px);
+    filter: blur(8px);
 }
 
 .Tenvios {

@@ -9371,7 +9371,7 @@ textarea {
 .item-floating-label .input-label.has-input {
   opacity: 1;
   top: 0;
-  color: yellow;
+  color: black;
   -webkit-transition: opacity 0.15s ease-in, top 0.2s linear;
   transition: opacity 0.15s ease-in, top 0.2s linear;
 }
@@ -12212,5 +12212,5 @@ a.dark {
 
 .form-control:focus,
 .form-control.focus {
-  color: yellow;
+  color: black;
 }

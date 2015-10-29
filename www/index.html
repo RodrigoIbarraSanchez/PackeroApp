@@ -50,7 +50,7 @@
         <ion-view hide-nav-bar="true">
             <ion-content ng-controller="SignInCtrl">
                 <br>
-                <img src="img/logo.png" style="display: block; margin-left: auto;margin-right: auto;border:none; width: 80px; height: auto;">
+                <img src="img/logo.png" style="opacity: 0.4; filter: alpha(opacity=40); display: block; margin-left: auto;margin-right: auto;border:none; width: 80px; height: auto;">
                 <form ng-submit="signIn(email, pass)">
                     <div class="list">
                         <label class="item item-input item-floating-label">
@@ -63,7 +63,7 @@
                         </label>
                     </div>
                     <div class="spacer" style="height: 40px;"></div>
-                    <button type="submit" class="button button-energized button-full button-outline">Acceder</button>
+                    <button type="submit" class="button button-energized button-block button-positive">Acceder</button>
                     <p class="text-center">
                         <a href="#/forgot-password" style="text-decoration: none">Olvidé mi contraseña</a>
                     </p>
