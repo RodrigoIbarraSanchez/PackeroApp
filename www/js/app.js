@@ -115,10 +115,12 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                             navigator.geolocation.watchPosition(function (position) {
                                     lat = position.coords.latitude;
                                     lng = position.coords.longitude;
-                                    ref.push({
-                                        lat: lat,
-                                        lng: lng
-                                    });
+                                    if (!detener) {
+                                        ref.push({
+                                            lat: lat,
+                                            lng: lng
+                                        });
+                                    }
                                 },
                                 function (error) {
                                     console.log(error.code + ', ' + error.message);
