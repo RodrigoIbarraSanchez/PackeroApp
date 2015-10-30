@@ -54,7 +54,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
 .controller('AppCtrl', function ($scope, $cordovaToast, $rootScope, $state, consumirAPI, $cordovaGeolocation) {
 
     var token = $rootScope.token;
-    var generarPosiciones = null;
+    var detener = false;
 
     $scope.sinSolicitudes = 'No hay solicitudes todavía';
     $scope.solicitudesPendientes = {};
@@ -76,6 +76,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
     $scope.entregarEnvio = function (id) {
         consumirAPI.entregarEnvio(id, token, function () {
             //navigator.geolocation.clearWatch(generarPosiciones);
+            detener = true;
             recargarSolicitudes(function () {});
         });
     }
@@ -127,11 +128,13 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                                 });
 
                             setInterval(function () {
-                                console.log(lat + ', ' + lng);
-                                ref.push({
-                                    lat: lat,
-                                    lng: lng
-                                });
+                                if (!detener) {
+                                    console.log(lat + ', ' + lng);
+                                    ref.push({
+                                        lat: lat,
+                                        lng: lng
+                                    });
+                                }
                             }, 5000);
 
 
