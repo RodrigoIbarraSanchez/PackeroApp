@@ -75,7 +75,7 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
 
     $scope.entregarEnvio = function (id) {
         consumirAPI.entregarEnvio(id, token, function () {
-            navigator.geolocation.clearWatch(generarPosiciones);
+            //navigator.geolocation.clearWatch(generarPosiciones);
             recargarSolicitudes(function () {});
         });
     }
@@ -106,18 +106,17 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                             var lat = pos.coords.latitude;
                             var lng = pos.coords.longitude;
                             console.log(lat + ', ' + lng);
-
                             ref.push({
                                 lat: lat,
                                 lng: lng
                             });
-                            generarPosiciones = navigator.geolocation.watchPosition(function (position) {
+                            navigator.geolocation.watchPosition(function (position) {
                                     lat = position.coords.latitude;
                                     lng = position.coords.longitude;
-                                    ref.push({
+                                    /*ref.push({
                                         lat: lat,
                                         lng: lng
-                                    });
+                                    });*/
                                 },
                                 function (error) {
                                     console.log(error.code + ', ' + error.message);
@@ -127,13 +126,13 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
                                     enableHighAccuracy: true
                                 });
 
-                            /*setInterval(function () {
+                            setInterval(function () {
                                 console.log(lat + ', ' + lng);
                                 ref.push({
                                     lat: lat,
                                     lng: lng
                                 });
-                            }, 10000);*/
+                            }, 5000);
 
 
                         },
