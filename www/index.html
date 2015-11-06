@@ -27,6 +27,13 @@
 
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 
+    <!-- Google Maps Javascript API -->
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+    <!-- angular-google-maps -->
+    <script src="lib/lodash.underscore.min.js?v=2.4.1"></script>
+    <script src="lib/angular-google-maps.min.js?v=1.2.2"></script>
+
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <!-- Componentes-->
@@ -35,6 +42,7 @@
 
     <!-- AngularFire -->
     <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
+
 </head>
 
 <body ng-app="ionicApp">
@@ -69,15 +77,19 @@
                     </p>
                 </form>
             </ion-content>
-            <div id="login" class="pane">
-            </div>
+            <div id="login" class="pane"></div>
         </ion-view>
     </script>
 
     <script id="templates/forgot-password.html" type="text/ng-template">
-        <ion-view view-title="Forgot Password" hide-nav-bar="true">
+        <ion-view view-title="Olvide mi contraseña">
             <ion-content padding="true">
-                <p>Formulario de recuperación de contraseña</p>
+                <h1 style="color:white;">
+                    Formulario recuperar contra....
+                </h1>
+                <!--<p>
+                    Return to <a href="#/sign-in">Iniciar Sesión</a>.
+                </p>-->
             </ion-content>
         </ion-view>
     </script>
@@ -131,6 +143,7 @@
                             <button class="button button-full button-energized" ng-click="startTrip(solicitud.tripId, solicitud.packeroId)">Trackear</button>
                             <button class="button button-full button-energized" ng-hide="solicitud.statusShipmentId!=55" ng-click="recogerEnvio(solicitud.shipmentId)">Recogido</button>
                             <button class="button button-full button-energized" ng-hide="solicitud.statusShipmentId!=60" ng-click="entregarEnvio(solicitud.shipmentId)">Entregado</button>
+                            <p><a href="#/mapa" class="button button-full button-energized">Mapa</a></p>
                         </div>
                     </ion-item>
 
@@ -181,6 +194,21 @@
             </ion-content>
         </ion-view>
     </script>
+
+
+    <script id="templates/mapa.html" type="text/ng-template">
+        <ion-view view-title="Mapa">
+            <ion-content>
+                <div id="map" data-tap-disabled="true"></div>
+            </ion-content>
+            <ion-footer-bar class="bar-dark">
+                <a ng-click="centerOnMe()" class="button button-icon icon ion-navigate">Mi ubicación</a>
+                <a ng-click="misEnvios()" class="button">Mis Envios</a>
+            </ion-footer-bar>
+        </ion-view>
+    </script>
+
+
 
 
 

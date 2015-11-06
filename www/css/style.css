@@ -86,3 +86,12 @@ input[type="checkbox"] {
 .checkbox-Do:before {
     content: 'Do';
 }
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.scroll {
+    height: 100%;
+}
