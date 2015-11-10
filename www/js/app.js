@@ -227,14 +227,17 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
         var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
-            title: 'Uluru (Ayers Rock)'
+            title: 'Destino'
         });
 
         google.maps.event.addListener(marker, 'click', function () {
             infowindow.open(map, marker);
         });
 
+
         $scope.map = map;
+        $scope.marker = marker;
+
     }
     google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -250,11 +253,16 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
 
         navigator.geolocation.getCurrentPosition(function (pos) {
             $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+            $scope.marker.setPosition({
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude
+            });
             //$scope.loading.hide();
         }, function (error) {
             alert('Unable to get location: ' + error.message);
         });
     };
+
 
     $scope.clickTest = function () {
         alert('Example of infowindow with ng-click');
