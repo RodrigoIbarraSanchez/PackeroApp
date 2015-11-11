@@ -8663,7 +8663,7 @@ button.item.item-button-right {
   overflow: hidden;
   margin: 20px 10px;
   border-radius: 2px;
-  background-color: #fff;
+  background-color: black;
 }
 
 .card {
@@ -10838,7 +10838,8 @@ progress {
 .button.button-energized {
   border-color: #e6b400;
   background-color: #ffc900;
-  color: #fff;
+  color: black;
+  font-weight: bold;
 }
 
 .button.button-energized:hover {

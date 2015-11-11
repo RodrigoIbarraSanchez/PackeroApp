@@ -58,7 +58,7 @@
         <ion-view hide-nav-bar="true">
             <ion-content ng-controller="SignInCtrl">
                 <br>
-                <img src="img/logoDos.png" style="opacity: 0.6; filter: alpha(opacity=40); display: block; margin-left: auto;margin-right: auto;border:none; width: 80px; height: auto;">
+                <img src="img/logo.png" style="filter: alpha(opacity=40); display: block; margin-left: auto;margin-right: auto;border:none; width: 100px; height: auto;">
                 <form ng-submit="signIn(email, pass)">
                     <div class="list">
                         <label class="item item-input item-floating-label">
@@ -120,30 +120,38 @@
                     <ion-refresher pulling-text="Desliza para actualizar" refreshing-text="Cargando..." refreshing-icon="mdi-navigation-refresh" pulling-icon="mdi-editor-vertical-align-bottom" on-refresh="doRefresh()">
                     </ion-refresher>
 
+                    <!--Confirmada-->
+                    <ion-item class="card" ng-repeat="solicitud in solicitudesConfirmadas">
+                        <div class="item item-text-wrap" style="background-color:rgb(23, 132, 165);">
+                            <p style="color:white; text-align:center;"><strong>{{solicitud.status}}</strong></p>
+
+                            <p style="color:white;"><strong style="color:white;">Nombre: </strong>{{solicitud.nombre}} {{solicitud.apellidos}}</p>
+
+                            <p style="color:white;"><strong style="color:white;">Origen: </strong>{{solicitud.origen}}</p>
+
+                            <p style="color:white;"><strong style="color:white;">Destino: </strong>{{solicitud.destino}}</p>
+
+                            <p style="color:white;"><strong style="color:white;">Fecha: </strong>{{solicitud.fecha}}</p>
+                            <button class="button button-full button-energized" ng-hide="solicitud.statusShipmentId!=50" ng-click="startTrip(solicitud.tripId, solicitud.packeroId)">¡Iniciar viaje!</button>
+                            <button class="button button-full button-energized" ng-hide="solicitud.statusShipmentId!=55" ng-click="recogerEnvio(solicitud.shipmentId)">Recogido</button>
+                            <button class="button button-full button-energized" ng-hide="solicitud.statusShipmentId!=60" ng-click="entregarEnvio(solicitud.shipmentId)">Entregado</button>
+                            <p><a href="#/mapa" class="button button-full button-energized">Ver mapa</a></p>
+                        </div>
+                    </ion-item>
+
                     <!--En Espera-->
                     <strong>{{sinSolicitudes}}</strong>
                     <ion-item class="card" ng-repeat="solicitud in solicitudesEspera">
                         <div class="item item-text-wrap" style="background-color:rgb(255, 201, 0);">
-                            <p style="text-align:center;"><strong>{{solicitud.status}}</strong></p>
-                            <p>Nombre: <strong>{{solicitud.nombre}} {{solicitud.apellidos}}</strong></p>
-                            <p>Origen: <strong>{{solicitud.origen}}</strong></p>
-                            <p>Destino: <strong>{{solicitud.destino}}</strong></p>
-                            <p>Fecha: <strong>{{solicitud.fecha}}</strong></p>
-                        </div>
-                    </ion-item>
+                            <p style="color:black; text-align:center;"><strong>{{solicitud.status}}</strong></p>
 
-                    <!--Confirmada-->
-                    <ion-item class="card" ng-repeat="solicitud in solicitudesConfirmadas">
-                        <div class="item item-text-wrap" style="background-color:rgba(123, 222, 151, 0.4);">
-                            <p style="text-align:center;"><strong>{{solicitud.status}}</strong></p>
-                            <p>Nombre: <strong>{{solicitud.nombre}} {{solicitud.apellidos}}</strong></p>
-                            <p>Origen: <strong>{{solicitud.origen}}</strong></p>
-                            <p>Destino: <strong>{{solicitud.destino}}</strong></p>
-                            <p>Fecha: <strong>{{solicitud.fecha}}</strong></p>
-                            <button class="button button-full button-energized" ng-click="startTrip(solicitud.tripId, solicitud.packeroId)">Trackear</button>
-                            <button class="button button-full button-energized" ng-hide="solicitud.statusShipmentId!=55" ng-click="recogerEnvio(solicitud.shipmentId)">Recogido</button>
-                            <button class="button button-full button-energized" ng-hide="solicitud.statusShipmentId!=60" ng-click="entregarEnvio(solicitud.shipmentId)">Entregado</button>
-                            <p><a href="#/mapa" class="button button-full button-energized">Mapa</a></p>
+                            <p style="color:black;"><strong style="color:black;">Nombre: </strong>{{solicitud.nombre}} {{solicitud.apellidos}}</p>
+
+                            <p style="color:black;"><strong style="color:black;">Origen: </strong>{{solicitud.origen}}</p>
+
+                            <p style="color:black;"><strong style="color:black;">Destino: </strong>{{solicitud.destino}}</p>
+
+                            <p style="color:black;"><strong style="color:black;">Fecha: </strong>{{solicitud.fecha}}</p>
                         </div>
                     </ion-item>
 
@@ -171,7 +179,7 @@
             <ion-content padding="true" ng-controller="HomeTabCtrl" style="text-align:center">
                 <h3 style="color:white">Disponibilidad para viajar</h3>
                 <div class="card" id="pendiente">
-                    <div class="item item-text-wrap" style="background-color:rgba(182, 193, 185, 0.4);">
+                    <div class="item item-text-wrap" style="background-color:white;">
                         <div class="form-group">
                             <div class="form-group Tenvios">
                                 <h2>Puebla-México</h2>
