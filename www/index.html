@@ -158,11 +158,15 @@
                     <!--Pendiente-->
                     <ion-item class="card" ng-repeat="solicitud in solicitudesPendientes">
                         <div class="item item-text-wrap" style="background-color:rgba(182, 193, 185, 0.4);">
-                            <p style="text-align:center;"><strong>{{solicitud.status}}</strong></p>
-                            <p>Nombre: <strong>{{solicitud.nombre}} {{solicitud.apellidos}}</strong></p>
-                            <p>Origen: <strong>{{solicitud.origen}}</strong></p>
-                            <p>Destino: <strong>{{solicitud.destino}}</strong></p>
-                            <p>Fecha: <strong>{{solicitud.fecha}}</strong></p>
+                            <p style="color:white; text-align:center;"><strong>{{solicitud.status}}</strong></p>
+
+                            <p style="color:white;"><strong style="color:white;">Nombre: </strong>{{solicitud.nombre}} {{solicitud.apellidos}}</p>
+
+                            <p style="color:white;"><strong style="color:white;">Origen: </strong>{{solicitud.origen}}</p>
+
+                            <p style="color:white;"><strong style="color:white;">Destino: </strong>{{solicitud.destino}}</p>
+
+                            <p style="color:white;"><strong style="color:white;">Fecha: </strong>{{solicitud.fecha}}</p>
                             <button class="button button-full button-energized" ng-click="ofertarSolicitud(solicitud.id)">Ofertar</button>
                             <button class="button button-full button-energized" ng-click="rechazarSolicitud(solicitud.id)">Rechazar</button>
                         </div>
