@@ -119,6 +119,23 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
         });
     }
 
+    $scope.verMapa = function (solicitudId) {
+        var token = $rootScope.token;
+
+        consumirAPI.obtenerCoordenadas(token, solicitudId, function (coordenadas) {
+
+            $scope.origen.setPosition({
+                lat: coordenadas.origen.latitude,
+                lng: coordenadas.origen.longitude
+            });
+
+            $state.go('mapa');
+        });
+
+
+
+    }
+
     $scope.startTrip = function (viajeId, packeroId) {
 
         consumirAPI.iniciarViaje(viajeId, token, function (data) {
@@ -251,24 +268,26 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
             content: compiled[0]
         });
 
-        var marker = new google.maps.Marker({
+        var origen = new google.maps.Marker({
             position: myLatlng,
             map: map,
-            title: 'Destino'
+            title: 'Origen'
         });
 
-        google.maps.event.addListener(marker, 'click', function () {
-            infowindow.open(map, marker);
+        google.maps.event.addListener(origen, 'click', function () {
+            infowindow.open(map, origen);
         });
 
 
         $scope.map = map;
-        $scope.marker = marker;
+        $scope.packero = origen;
+        $scope.origen = origen;
 
     }
     google.maps.event.addDomListener(window, 'load', initialize);
 
-    $scope.centerOnMe = function () {
+    $scope.centerOnMe = function (solicitudId) {
+
         if (!$scope.map) {
             alert('No hay mapa');
         }
@@ -280,7 +299,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
 
         navigator.geolocation.getCurrentPosition(function (pos) {
             $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-            $scope.marker.setPosition({
+            $scope.packero.setPosition({
                 lat: pos.coords.latitude,
                 lng: pos.coords.longitude
             });
@@ -384,6 +403,16 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
 
 //creamos nuestro servicio
 .service('consumirAPI', function ($http) {
+
+    this.obtenerCoordenadas = function (token, solicitudId, callback) {
+        $http.get('http://packandpack.com/api/solicitudesenvios/' + solicitudId + '/coordenadas?access_token=' + token)
+            .then(function (response) {
+                //Hacer algo con response
+                callback(response.data);
+            }, function (x) {
+                //Error en x 
+            });
+    }
 
     this.obtenerSolicitudes = function (token, callback) {
         $http.get('http://packandpack.com/api/packero/solicitudes?access_token=' + token)

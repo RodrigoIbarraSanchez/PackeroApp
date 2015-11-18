@@ -135,7 +135,7 @@
                             <button class="button button-full button-energized" ng-hide="solicitud.statusShipmentId!=50" ng-click="startTrip(solicitud.tripId, solicitud.packeroId)">¡Iniciar viaje!</button>
                             <button class="button button-full button-energized" ng-hide="solicitud.statusShipmentId!=55" ng-click="recogerEnvio(solicitud.shipmentId)">Recogido</button>
                             <button class="button button-full button-energized" ng-hide="solicitud.statusShipmentId!=60" ng-click="entregarEnvio(solicitud.shipmentId)">Entregado</button>
-                            <p><a href="#/mapa" class="button button-full button-energized">Ver mapa</a></p>
+                            <p><a ng-click="verMapa(solicitud.id)" class="button button-full button-energized">Ver mapa</a></p>
                         </div>
                     </ion-item>
 
