@@ -1,4 +1,4 @@
-angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"])
+angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.service.push', 'checklist-model', "firebase"])
 
 .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -45,16 +45,43 @@ angular.module('ionicApp', ['ionic', 'checklist-model', 'ngCordova', "firebase"]
 
 })
 
-.controller('SignInCtrl', function ($scope, $rootScope, $state, consumirAPI) {
+.controller('SignInCtrl', function ($scope, $rootScope, $state, consumirAPI, $ionicUser, $ionicPush) {
 
     $scope.signIn = function (email, pass) {
         consumirAPI.signIn(email, pass, function (token) {
             $rootScope.token = token;
             $state.go('tabs.envios');
         });
+    }
+
+    // Identificamos al usuario con el servicio de Ionic al pulsar el boton
+    $scope.identifyUser = function () {
+        console.log('Ionic: Identificando al usuario');
+
+        //Si no tenemos un user_id, generamos uno nuevo
+        var user = $ionicUser.get();
+        if (!user.user_id) {
+            user.user_id = $ionicUser.generateGUID();
+        };
+
+        // Establecemos alguna información para nuestro usuario
+        angular.extend(user, {
+            name: 'Rodrigo',
+            description: 'Descripcion del usuario',
+            location: 'Ubicacion del usuario',
+            website: 'http://google.com'
+        });
+
+        // Cuando tenemos todos los datos, nos identificamos contra el Ionic User Service
+
+        $ionicUser.identify(user).then(function () {
+            $scope.identified = true;
+            alert('Usuario identificado: ' + user.name + '\n ID ' + user.user_id);
+        });
     };
 
 })
+
 
 .controller('AppCtrl', function ($scope, $cordovaToast, $rootScope, $state, consumirAPI, $cordovaGeolocation) {
 
