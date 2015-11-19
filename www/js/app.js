@@ -236,6 +236,8 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
 
 .controller('MapCtrl', function ($rootScope, $scope, $ionicLoading, $state, $compile) {
 
+    $scope.coordenadaActual = null;
+
     initialize();
 
     function initialize() {
@@ -280,15 +282,19 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
             $scope.map = map;
             //$scope.loading.hide();
 
-            navigator.geolocation.watchPosition(function (pos) {
-                packero.setPosition({
-                    lat: pos.coords.latitude,
-                    lng: pos.coords.longitude
-                });
-            }, function (error) {
-                alert('Unable to get location: ' + error.message);
-            });
+        }, function (error) {
+            alert('Unable to get location: ' + error.message);
+        });
 
+        navigator.geolocation.watchPosition(function (pos) {
+            $scope.coordenadaActual = {
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude
+            };
+            $scope.packero.setPosition({
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude
+            });
         }, function (error) {
             alert('Unable to get location: ' + error.message);
         });
@@ -306,16 +312,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
             showBackdrop: false
         });*/
 
-        navigator.geolocation.getCurrentPosition(function (pos) {
-            $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-            $scope.packero.setPosition({
-                lat: pos.coords.latitude,
-                lng: pos.coords.longitude
-            });
-            //$scope.loading.hide();
-        }, function (error) {
-            alert('Unable to get location: ' + error.message);
-        });
+        $scope.map.setCenter($scope.coordenadaActual);
     };
 
 
