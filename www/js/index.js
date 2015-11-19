@@ -1,6 +1,6 @@
 angular.module('ionicApp', ['ionic'])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function ($stateProvider, $urlRouterProvider) {
 
   $stateProvider
     .state('signin', {
@@ -36,19 +36,19 @@ angular.module('ionicApp', ['ionic'])
     });
 
 
-   $urlRouterProvider.otherwise('/sign-in');
+  $urlRouterProvider.otherwise('/sign-in');
 
 })
 
-.controller('SignInCtrl', function($scope, $state) {
-  
-  $scope.signIn = function(user) {
+.controller('SignInCtrl', function ($scope, $state) {
+
+  $scope.signIn = function (user) {
     console.log('Sign-In', user);
     $state.go('tabs.envios');
   };
-  
+
 })
 
-.controller('HomeTabCtrl', function($scope) {
+.controller('HomeTabCtrl', function ($scope) {
   console.log('HomeTabCtrl');
 });

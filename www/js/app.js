@@ -53,37 +53,10 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
             $state.go('tabs.envios');
         });
     }
-
-    // Identificamos al usuario con el servicio de Ionic al pulsar el boton
-    $scope.identifyUser = function () {
-        console.log('Ionic: Identificando al usuario');
-
-        //Si no tenemos un user_id, generamos uno nuevo
-        var user = $ionicUser.get();
-        if (!user.user_id) {
-            user.user_id = $ionicUser.generateGUID();
-        };
-
-        // Establecemos alguna información para nuestro usuario
-        angular.extend(user, {
-            name: 'Rodrigo',
-            description: 'Descripcion del usuario',
-            location: 'Ubicacion del usuario',
-            website: 'http://google.com'
-        });
-
-        // Cuando tenemos todos los datos, nos identificamos contra el Ionic User Service
-
-        $ionicUser.identify(user).then(function () {
-            $scope.identified = true;
-            alert('Usuario identificado: ' + user.name + '\n ID ' + user.user_id);
-        });
-    };
-
 })
 
 
-.controller('AppCtrl', function ($scope, $cordovaToast, $rootScope, $state, consumirAPI, $cordovaGeolocation) {
+.controller('AppCtrl', function ($rootScope, $scope, $cordovaToast, $rootScope, $state, consumirAPI, $cordovaGeolocation) {
 
     var token = $rootScope.token;
     var detener = false;
@@ -124,10 +97,26 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
 
         consumirAPI.obtenerCoordenadas(token, solicitudId, function (coordenadas) {
 
-            $scope.origen.setPosition({
-                lat: coordenadas.origen.latitude,
-                lng: coordenadas.origen.longitude
+            var origen = new google.maps.Marker({
+                position: {
+                    lat: coordenadas.origen.latitude,
+                    lng: coordenadas.origen.longitude
+                },
+                title: 'Origen',
+                icon: 'http://packandpack.com/img/iconos/banderaVerde2.png'
             });
+
+            var destino = new google.maps.Marker({
+                position: {
+                    lat: coordenadas.destino.latitude,
+                    lng: coordenadas.destino.longitude
+                },
+                title: 'Destino',
+                icon: 'http://packandpack.com/img/iconos/banderaRoja2.png'
+            });
+
+            $rootScope.origen = origen;
+            $rootScope.destino = destino;
 
             $state.go('mapa');
         });
@@ -245,48 +234,68 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
     }
 })
 
-.controller('MapCtrl', function ($scope, $ionicLoading, $state, $compile) {
+.controller('MapCtrl', function ($rootScope, $scope, $ionicLoading, $state, $compile) {
 
     initialize();
 
     function initialize() {
-        var myLatlng = new google.maps.LatLng(43.07493, -89.381388);
+        navigator.geolocation.getCurrentPosition(function (pos) {
+            var mapOptions = {
+                center: {
+                    lat: pos.coords.latitude,
+                    lng: pos.coords.longitude
+                },
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map"),
+                mapOptions);
 
-        var mapOptions = {
-            center: myLatlng,
-            zoom: 16,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map"),
-            mapOptions);
+            $rootScope.origen.setMap(map);
+            $rootScope.destino.setMap(map);
 
-        //Marker + infowindow + angularjs compiled ng-click
-        var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
-        var compiled = $compile(contentString)($scope);
+            var packero = new google.maps.Marker({
+                position: {
+                    lat: pos.coords.latitude,
+                    lng: pos.coords.longitude
+                },
+                map: map,
+                title: 'Packero',
+                icon: 'http://packandpack.com/img/packMap.png '
+            });
 
-        var infowindow = new google.maps.InfoWindow({
-            content: compiled[0]
+            //Marker + infowindow + angularjs compiled ng-click
+            var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
+            var compiled = $compile(contentString)($scope);
+
+            var infowindow = new google.maps.InfoWindow({
+                content: compiled[0]
+            });
+
+            google.maps.event.addListener(packero, 'click', function () {
+                infowindow.open(map, packero);
+            });
+
+            $scope.packero = packero;
+            $scope.map = map;
+            //$scope.loading.hide();
+
+            navigator.geolocation.watchPosition(function (pos) {
+                packero.setPosition({
+                    lat: pos.coords.latitude,
+                    lng: pos.coords.longitude
+                });
+            }, function (error) {
+                alert('Unable to get location: ' + error.message);
+            });
+
+        }, function (error) {
+            alert('Unable to get location: ' + error.message);
         });
-
-        var origen = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: 'Origen'
-        });
-
-        google.maps.event.addListener(origen, 'click', function () {
-            infowindow.open(map, origen);
-        });
-
-
-        $scope.map = map;
-        $scope.packero = origen;
-        $scope.origen = origen;
-
     }
     google.maps.event.addDomListener(window, 'load', initialize);
 
-    $scope.centerOnMe = function (solicitudId) {
+    $scope.centerOnMe = function () {
 
         if (!$scope.map) {
             alert('No hay mapa');
