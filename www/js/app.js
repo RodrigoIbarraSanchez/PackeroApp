@@ -1,4 +1,4 @@
-angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.service.push', 'checklist-model', "firebase"])
+angular.module('ionicApp', ['ionic', 'ngCordova', 'checklist-model', "firebase"])
 
 .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -45,7 +45,19 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
 
 })
 
-.controller('SignInCtrl', function ($scope, $rootScope, $state, consumirAPI, $ionicUser, $ionicPush) {
+.controller('mainCtrl', ['$scope', '$state', '$ionicSideMenuDelegate', '$timeout', function ($scope, $state, $ionicSideMenuDelegate, $timeout) {
+
+    $scope.toggleLeft = function () {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+
+    $timeout(function () {
+        $ionicSideMenuDelegate.canDragContent(true);
+    })
+
+}])
+
+.controller('SignInCtrl', function ($scope, $rootScope, $state, consumirAPI, $timeout, $ionicSideMenuDelegate) {
 
     $scope.signIn = function (email, pass) {
         consumirAPI.signIn(email, pass, function (token) {
@@ -53,10 +65,17 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
             $state.go('tabs.envios');
         });
     }
+    $timeout(function () {
+        $ionicSideMenuDelegate.canDragContent(false);
+    })
 })
 
 
-.controller('AppCtrl', function ($rootScope, $scope, $cordovaToast, $rootScope, $state, consumirAPI, $cordovaGeolocation) {
+.controller('AppCtrl', function ($rootScope, $scope, $cordovaToast, $rootScope, $state, consumirAPI, $cordovaGeolocation, $ionicSideMenuDelegate, $timeout) {
+    
+    $timeout(function () {
+        $ionicSideMenuDelegate.canDragContent(true);
+    })
 
     var token = $rootScope.token;
     var detener = false;
@@ -103,7 +122,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
                     lng: coordenadas.origen.longitude
                 },
                 title: 'Origen',
-                icon: 'http://packandpack.com/img/iconos/banderaVerde2.png'
+                icon: 'https://packandpack.com/img/iconos/banderaVerde2.png'
             });
 
             var destino = new google.maps.Marker({
@@ -112,7 +131,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
                     lng: coordenadas.destino.longitude
                 },
                 title: 'Destino',
-                icon: 'http://packandpack.com/img/iconos/banderaRoja2.png'
+                icon: 'https://packandpack.com/img/iconos/banderaRoja2.png'
             });
 
             $rootScope.origen = origen;
@@ -232,6 +251,12 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
             $scope.$broadcast('scroll.refreshComplete');
         });
     }
+
+    function ContentController($scope, $ionicSideMenuDelegate) {
+        $scope.toggleLeft = function () {
+            $ionicSideMenuDelegate.toggleLeft();
+        };
+    }
 })
 
 .controller('MapCtrl', function ($rootScope, $scope, $ionicLoading, $state, $compile) {
@@ -263,7 +288,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
                 },
                 map: map,
                 title: 'Packero',
-                icon: 'http://packandpack.com/img/packMap.png '
+                icon: 'https://packandpack.com/img/packMap.png '
             });
 
             //Marker + infowindow + angularjs compiled ng-click
@@ -411,7 +436,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
 .service('consumirAPI', function ($http) {
 
     this.obtenerCoordenadas = function (token, solicitudId, callback) {
-        $http.get('http://packandpack.com/api/solicitudesenvios/' + solicitudId + '/coordenadas?access_token=' + token)
+        $http.get('https://packandpack.com/api/solicitudesenvios/' + solicitudId + '/coordenadas?access_token=' + token)
             .then(function (response) {
                 //Hacer algo con response
                 callback(response.data);
@@ -421,7 +446,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
     }
 
     this.obtenerSolicitudes = function (token, callback) {
-        $http.get('http://packandpack.com/api/packero/solicitudes?access_token=' + token)
+        $http.get('https://packandpack.com/api/packero/solicitudes?access_token=' + token)
             .then(function (response) {
                 //Hacer algo con response
                 callback(response.data);
@@ -431,7 +456,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
     }
 
     this.ofertarSolicitud = function (id, token, callback) {
-        $http.put('http://packandpack.com/api/packero/solicitudes?access_token=' + token, {
+        $http.put('https://packandpack.com/api/packero/solicitudes?access_token=' + token, {
             id: id,
             status: 20
         }).then(function (response) {
@@ -444,7 +469,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
     }
 
     this.rechazarSolicitud = function (id, token, callback) {
-        $http.delete('http://packandpack.com/api/packero/solicitudes?id=' + id + '&access_token=' + token).then(function (response) {
+        $http.delete('https://packandpack.com/api/packero/solicitudes?id=' + id + '&access_token=' + token).then(function (response) {
                 //Recargar solicitudes
                 callback();
             },
@@ -456,7 +481,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
 
     this.opcionViaje = function (origenId, destinoId, weekDays, token, callback) {
 
-        $http.post('http://packandpack.com/api/viajes/opciones?access_token=' + token, {
+        $http.post('https://packandpack.com/api/viajes/opciones?access_token=' + token, {
             origenId: origenId,
             destinoId: destinoId,
             weekDays: weekDays
@@ -472,7 +497,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
     }
 
     this.signIn = function (email, pass, callback) {
-        $http.post("http://packandpack.com/oauth/v2/token", {
+        $http.post("https://packandpack.com/oauth/v2/token", {
             grant_type: "password",
             client_id: "1_3bcbxd9e24g0gk4swg0kwgcwg4o8k8g4g888kwc44gcc0gwwk4",
             client_secret: "4ok2x70rlfokc8g0wws8c8kwcokw80k44sg48goc0ok4w0so0k",
@@ -498,7 +523,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
     }
 
     this.obtenerOpcionesViaje = function (token, callback) {
-        $http.get('http://packandpack.com/api/viajes/opciones?access_token=' + token)
+        $http.get('https://packandpack.com/api/viajes/opciones?access_token=' + token)
             .then(function (response) {
                 // Hacer algo con response
                 callback(response.data);
@@ -508,7 +533,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
     }
 
     this.actualizarOpcionViaje = function (id, origenId, destinoId, weekDays, token) {
-        $http.put('http://packandpack.com/api/viajes/opciones?access_token=' + token, {
+        $http.put('https://packandpack.com/api/viajes/opciones?access_token=' + token, {
             id: id,
             origenId: origenId,
             destinoId: destinoId,
@@ -522,7 +547,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
     }
 
     this.iniciarViaje = function (id, token, callback) {
-        $http.put('http://packandpack.com/api/trips/' + id + '/start?access_token=' + token)
+        $http.put('https://packandpack.com/api/trips/' + id + '/start?access_token=' + token)
             .then(function (response) {
                 // Hacer algo con response
                 callback(response.data);
@@ -532,7 +557,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
     }
 
     this.recogerEnvio = function (id, token, callback) {
-        $http.put('http://packandpack.com/api/shipments/' + id + '/pick?access_token=' + token)
+        $http.put('https://packandpack.com/api/shipments/' + id + '/pick?access_token=' + token)
             .then(function (response) {
                 // Hacer algo con response
                 callback();
@@ -541,7 +566,7 @@ angular.module('ionicApp', ['ionic', 'ionic.service.core', 'ngCordova', 'ionic.s
             });
     }
     this.entregarEnvio = function (id, token, callback) {
-        $http.put('http://packandpack.com/api/shipments/' + id + '/deliver?access_token=' + token)
+        $http.put('https://packandpack.com/api/shipments/' + id + '/deliver?access_token=' + token)
             .then(function (response) {
                 // Hacer algo con response
                 callback();

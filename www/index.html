@@ -24,8 +24,6 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/checklist-model/checklist-model.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
-    <script src="lib/ionic-service-core/ionic-core.js"></script>
-    <script src="lib/ionic-service-push/ionic-push.js"></script>
 
     <!-- Google Maps Javascript API -->
     <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
@@ -45,14 +43,28 @@
 
 </head>
 
-<body ng-app="ionicApp">
+<body ng-app="ionicApp" ng-controller="mainCtrl">
 
     <ion-nav-bar class="bar-dark">
         <ion-nav-back-button class="button-icon ion-arrow-left-c">
         </ion-nav-back-button>
     </ion-nav-bar>
 
-    <ion-nav-view></ion-nav-view>
+
+
+
+    <ion-side-menus>
+        <!-- Left menu -->
+        <ion-side-menu side="left">
+        </ion-side-menu>
+
+        <ion-side-menu-content>
+            <ion-nav-view></ion-nav-view>
+        </ion-side-menu-content>
+
+    </ion-side-menus>
+
+
 
     <script id="templates/sign-in.html" type="text/ng-template">
         <ion-view hide-nav-bar="true">
