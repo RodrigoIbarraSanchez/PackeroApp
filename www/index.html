@@ -66,6 +66,87 @@
 
 
 
+    <script id="intro.html" type="text/ng-template">
+        <ion-view left-buttons="leftButtons" right-buttons="rightButtons">
+            <ion-slide-box on-slide-changed="slideChanged(index)">
+                <ion-slide>
+                    <h3>Thank you for choosing the Awesome App!</h3>
+                    <div id="logo">
+                        <img src="http://code.ionicframework.com/assets/img/app_icon.png">
+                    </div>
+                    <p>
+                        We've worked super hard to make you happy.
+                    </p>
+                    <p>
+                        But if you are angry, too bad.
+                    </p>
+                </ion-slide>
+                <ion-slide>
+                    <h3>Using Awesome</h3>
+
+                    <div id="list">
+                        <h5>Just three steps:</h5>
+                        <ol>
+                            <li>Be awesome</li>
+                            <li>Stay awesome</li>
+                            <li>There is no step 3</li>
+                        </ol>
+                    </div>
+                </ion-slide>
+                <ion-slide>
+                    <h3>Any questions?</h3>
+                    <p>
+                        Too bad!
+                    </p>
+                </ion-slide>
+            </ion-slide-box>
+        </ion-view>
+    </script>
+
+    <script id="main.html" type="text/ng-template">
+        <ion-view left-buttons="leftButtons" right-buttons="rightButtons" hide-back-button="true" title="'Awesome'">
+            <ion-side-menus>
+
+                <header class="bar bar-header bar-stable">
+                    <h1 class="title">Contents</h1>
+                </header>
+
+                <ion-pane ion-side-menu-content>
+                    <ion-content has-header="true" padding="true">
+                        This is amazing. Slide this to the right so see the side menu on the left. Click any of the menu items to go back to the introduction.
+                    </ion-content>
+                </ion-pane>
+
+            </ion-side-menus>
+
+            <ion-side-menu side="left">
+                <header class="bar bar-header bar-stable">
+                    <h1 class="title">Contents</h1>
+                </header>
+
+                <ion-content has-header="true" overflow-scroll="true">
+                    <ul class="list">
+
+                        <a class="item item-icon-left gray" href="#" ng-click="toggleLeftMenu()"><i class="icon ion-home"></i>Cover
+                  </a>
+
+                        <a class="item item-icon-left gray" href="#" ng-click="toggleLeftMenu()"><i class="icon ion-help"></i>Get Help
+                  </a>
+
+                        <a class="item item-icon-left gray" href="#" ng-click="toggleLeftMenu()"><i class="icon ion-star"></i> Rate Us
+                  </a>
+
+                        <a class="item item-icon-left gray" href="#" ng-click="toggleLeftMenu()"><i class="icon ion-gear-a"></i>Settings
+                  </a>
+                    </ul>
+
+                </ion-content>
+
+            </ion-side-menu>
+
+        </ion-view>
+    </script>
+
     <script id="templates/sign-in.html" type="text/ng-template">
         <ion-view hide-nav-bar="true">
             <ion-content ng-controller="SignInCtrl">
